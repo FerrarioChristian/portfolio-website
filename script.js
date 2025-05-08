@@ -16,7 +16,6 @@ const animateTrailer = (e, interacting) => {
   };
 
   trailer.animate(keyframes, {
-    duration: 80,
     fill: "forwards",
   });
 };
@@ -32,6 +31,6 @@ window.onmousemove = (e) => {
   trailer.dataset.type = interacting ? interactable.dataset.type : "";
 
   if (interacting) {
-    icon.className = "fa-solid fa-arrow-up-right";
+    icon.content = "north_east";
   }
 };

@@ -463,10 +463,9 @@ body:hover > #trailer {
 
 #trailer-icon {
   color: white;
-  font-size: 11px;
-  line-height: 12px;
+  font-size: 1rem;
+  line-height: 1rem;
   font-weight: 400;
-
   opacity: 0;
   transition: opacity 200ms ease;
 }
