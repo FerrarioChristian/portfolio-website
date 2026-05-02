@@ -7,10 +7,12 @@
   import Projects from '$lib/components/sections/Projects.svelte';
   import Contact from '$lib/components/sections/Contact.svelte';
   import Footer from '$lib/components/Footer.svelte';
+  import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 </script>
 
 <Header />
 <MouseTrailer />
+<ThemeToggle />
 <main>
   <Profile />
   <About />

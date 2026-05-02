@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --color-brand-gray: #555555;
   --color-brand-dark: #353535;
@@ -11,7 +13,12 @@
   * {
     margin: 0;
     padding: 0;
-    cursor: none;
+  }
+
+  @media (min-width: 640px) {
+    * {
+      cursor: none;
+    }
   }
   
   html {
@@ -21,6 +28,13 @@
   body {
     font-family: 'Poppins', sans-serif;
     background-color: white;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dark body {
+    background-color: black;
+    color: white;
   }
 
   h1, h2, h3, h4, h5, h6, b, strong {
