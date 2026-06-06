@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<section id="about" class="relative pt-[4vh] lg:h-[96vh] h-fit lg:mx-[10rem] mx-[5%] box-border">
+<section id="about" class="lg:snap-start relative pt-[4vh] lg:h-[96vh] h-fit lg:mx-[10rem] mx-[5%] box-border">
   <p class="text-[var(--color-brand-gray)] dark:text-gray-300 text-center">Get To Know More</p>
   <h1 class="text-[2rem] lg:text-[3rem] text-center mb-[2rem] dark:text-white">About Me</h1>
   <div class="flex gap-[4rem] lg:h-[80%] flex-col lg:flex-row h-fit">

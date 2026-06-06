@@ -3,7 +3,7 @@
   const featuredProjects = projects.filter(p => p.isFeatured);
 </script>
 
-<section id="projects" class="relative pt-[4vh] lg:h-[96vh] h-fit lg:mx-[10rem] mx-[5%] box-border mt-[2rem] lg:mt-0">
+<section id="projects" class="lg:snap-start relative pt-[4vh] lg:h-[96vh] h-fit lg:mx-[10rem] mx-[5%] box-border mt-[2rem] lg:mt-0">
   <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-center">Browse My Recent</p>
   <h1 class="text-[2rem] lg:text-[3rem] text-center mb-[2rem] dark:text-white">Projects</h1>
   <div class="flex mx-auto max-w-[100rem] justify-center flex-col w-full mt-[2rem] lg:mt-0">

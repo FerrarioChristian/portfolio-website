@@ -1,4 +1,4 @@
-<footer class="h-[40vh] sm:h-[26vh] mx-[1rem] flex flex-col justify-center items-center">
+<footer class="lg:snap-end h-[40vh] sm:h-[26vh] mx-[1rem] flex flex-col justify-center items-center">
   <nav class="h-fit mb-[2rem] sm:mb-0 sm:h-[17vh] flex justify-around items-center">
     <div class="nav-links-container">
       <ul class="flex flex-col sm:flex-row gap-2 sm:gap-8 text-center list-none text-[1.5rem] sm:text-[1.5rem] text-[1rem]">

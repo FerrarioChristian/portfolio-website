@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<section id="contact" class="flex flex-col justify-center h-[40vh] lg:h-[70vh] lg:mx-[10rem] mx-[5%] pt-[4vh] box-border relative">
+<section id="contact" class="lg:snap-start flex flex-col justify-center h-[40vh] lg:h-[70vh] lg:mx-[10rem] mx-[5%] pt-[4vh] box-border relative">
   <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-center">Get in Touch</p>
   <h1 class="text-[2rem] lg:text-[3rem] text-center mb-[2rem] dark:text-white">Contact Me</h1>
   

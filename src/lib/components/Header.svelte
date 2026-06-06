@@ -7,7 +7,7 @@
 </script>
 
 <!-- DESKTOP NAV -->
-<nav id="desktop-nav" class="hidden lg:flex justify-around items-center h-[13vh]">
+<nav id="desktop-nav" class="lg:snap-start hidden lg:flex justify-around items-center h-[13vh]">
   <a class="text-[2rem] interactable hover:scale-none text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300" href="/">Christian Ferrario</a>
   <div>
     <ul class="flex gap-8 list-none text-[1.5rem]">
