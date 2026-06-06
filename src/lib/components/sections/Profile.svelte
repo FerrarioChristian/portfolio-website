@@ -1,8 +1,8 @@
 <script lang="ts">
 </script>
 
-<section id="profile" class="relative flex justify-center lg:gap-[5rem] h-fit lg:h-[80vh] flex-col lg:flex-row mb-[6rem] lg:mb-0 lg:mx-[10rem] mx-[5%] pt-[4vh] box-border">
-  <div class="flex shrink-0 h-[275px] w-[275px] lg:h-[400px] lg:w-[400px] mx-auto lg:mx-0 mb-[2rem] lg:my-auto rounded-full overflow-hidden">
+<section id="profile" class="relative flex justify-center lg:gap-[5rem] h-fit lg:h-[83vh] flex-col lg:flex-row mb-[6rem] lg:mb-0 lg:mx-[10rem] mx-[5%] pt-[4vh] box-border">
+  <div class="flex shrink-0 h-[275px] w-[275px] lg:h-[400px] lg:w-[400px] mx-auto lg:mx-0 mb-[2rem] lg:my-auto rounded-full corner-squircle overflow-hidden">
     <img
       class="max-w-none"
       style="scale: 1.23; position: relative; top: 59%; left: 60%; transform: translate(-50%, -50%);"
@@ -16,13 +16,13 @@
     <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-[1.25rem] lg:text-[1.75rem] mb-[1rem]">Software Engineer</p>
     <div class="flex justify-center gap-[1rem] flex-wrap lg:flex-nowrap" data-type="link">
       <button
-        class="font-semibold transition-all duration-300 p-[1rem] w-[8rem] box-content rounded-[2rem] border-[0.1rem] border-[#353535] dark:border-white bg-black dark:bg-white text-white dark:text-black hover:underline hover:underline-offset-[0.2rem] interactable"
+        class="font-semibold transition-all duration-300 p-[1rem] w-[8rem] box-content rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#353535] dark:border-white bg-black dark:bg-white text-white dark:text-black hover:underline hover:underline-offset-[0.2rem] interactable"
         onclick={() => window.open('/assets/CV Christian Ferrario.pdf')}
       >
         Download CV
       </button>
       <button
-        class="font-semibold transition-all duration-300 p-[1rem] w-[8rem] box-content rounded-[2rem] border-[0.1rem] border-[#353535] dark:border-white bg-transparent text-black dark:text-white hover:underline hover:underline-offset-[0.2rem] interactable"
+        class="font-semibold transition-all duration-300 p-[1rem] w-[8rem] box-content rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#353535] dark:border-white bg-transparent text-black dark:text-white hover:underline hover:underline-offset-[0.2rem] interactable"
         onclick={() => location.href='#contact'}
       >
         Contact Info

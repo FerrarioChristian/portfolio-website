@@ -5,7 +5,7 @@
   <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-center">Get in Touch</p>
   <h1 class="text-[2rem] lg:text-[3rem] text-center mb-[2rem] dark:text-white">Contact Me</h1>
   
-  <div class="flex gap-[1rem] justify-center rounded-[2rem] border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 bg-[var(--color-brand-bg)] dark:bg-black my-[2rem] mx-auto p-[0.5rem] flex-wrap">
+  <div class="flex gap-[1rem] justify-center rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 bg-[var(--color-brand-bg)] dark:bg-black my-[2rem] mx-auto p-[0.5rem] flex-wrap">
     
     <div class="flex items-center justify-center gap-[0.5rem] m-0 lg:m-[1rem]">
       <img

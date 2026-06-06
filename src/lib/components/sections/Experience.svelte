@@ -25,7 +25,7 @@
     <div class="flex gap-[2rem] mb-[2rem] lg:mt-0 flex-col xl:flex-row flex-wrap">
       
       <!-- Frontend Container -->
-      <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[2rem] border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
+      <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[calc(3rem*var(--brm))] corner-squircle border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
         <h2 class="text-[1.25rem] sm:text-[1.75rem] font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 mb-[2rem]">Frontend Development</h2>
         <div class="flex flex-row flex-wrap gap-[2.5rem] justify-around text-left">
           {#each frontendSkills as skill}
@@ -41,7 +41,7 @@
       </div>
 
       <!-- SE Container -->
-      <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[2rem] border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
+      <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[calc(3rem*var(--brm))] corner-squircle border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
         <h2 class="text-[1.25rem] sm:text-[1.75rem] font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 mb-[2rem]">Software Engineer</h2>
         <div class="flex flex-row flex-wrap gap-[2.5rem] justify-around text-left">
           {#each seSkills as skill}

@@ -7,7 +7,7 @@
   <div class="flex gap-[4rem] lg:h-[80%] flex-col lg:flex-row h-fit">
     <div class="flex mx-auto max-w-[100rem] justify-center flex-col w-full">
       <div class="flex gap-[2rem] mb-[2rem] mt-[2rem] lg:mt-0 flex-col xl:flex-row flex-wrap">
-        <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[2rem] border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
+        <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
           <img
             src="/assets/experience.png"
             alt="Experience icon"
@@ -19,7 +19,7 @@
           <br>
           <p class="text-[var(--color-brand-gray)] dark:text-gray-300 text-sm xl:text-base">Software Engineer</p>
         </div>
-        <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[2rem] border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
+        <div class="flex-1 min-w-[17rem] p-[1.5rem] bg-white dark:bg-black rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center">
           <img
             src="/assets/education.png"
             alt="Education icon"

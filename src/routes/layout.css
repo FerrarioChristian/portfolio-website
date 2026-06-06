@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@toolwind/corner-shape";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -10,6 +11,15 @@
 }
 
 @layer base {
+  :root {
+    --brm: 1;
+  }
+  @supports (corner-shape: squircle) {
+    :root {
+      --brm: 2;
+    }
+  }
+
   * {
     margin: 0;
     padding: 0;
