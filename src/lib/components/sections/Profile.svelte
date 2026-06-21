@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Button from '$lib/components/Button.svelte';
 </script>
 
 <section id="profile" class="relative flex justify-center lg:gap-[5rem] h-fit lg:h-[83vh] flex-col lg:flex-row mb-[6rem] lg:mb-0 lg:mx-[10rem] mx-[5%] pt-[4vh] box-border">
@@ -15,18 +16,20 @@
     <h1 class="text-[2rem] lg:text-[3rem] text-center dark:text-white">Christian Ferrario</h1>
     <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-[1.25rem] lg:text-[1.75rem] mb-[1rem]">Software Engineer</p>
     <div class="flex justify-center gap-[1rem] flex-wrap lg:flex-nowrap" data-type="link">
-      <button
-        class="font-semibold transition-all duration-300 p-[1rem] w-[8rem] box-content rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#353535] dark:border-white bg-black dark:bg-white text-white dark:text-black hover:underline hover:underline-offset-[0.2rem] interactable"
+      <Button
+        variant="filled"
         onclick={() => window.open('/assets/CV Christian Ferrario.pdf')}
+        class="w-[8rem] box-content"
       >
         Download CV
-      </button>
-      <button
-        class="font-semibold transition-all duration-300 p-[1rem] w-[8rem] box-content rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#353535] dark:border-white bg-transparent text-black dark:text-white hover:underline hover:underline-offset-[0.2rem] interactable"
+      </Button>
+      <Button
+        variant="outline"
         onclick={() => location.href='#contact'}
+        class="w-[8rem] box-content"
       >
         Contact Info
-      </button>
+      </Button>
     </div>
     <div class="flex justify-center mt-[1rem] gap-[1rem]">
       <a
