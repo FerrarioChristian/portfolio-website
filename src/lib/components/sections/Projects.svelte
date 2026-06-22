@@ -26,6 +26,7 @@
               variant="outline" 
               padding="py-[0.5rem] px-[1rem]"
               href={`/projects?scrollTo=${project.slug}`} 
+              data-sveltekit-preload-data="hover"
               onclick={(e: any) => e.stopPropagation()} 
               class="w-[12rem] group-hover:bg-gray-200 dark:group-hover:bg-gray-800"
             >
@@ -35,8 +36,8 @@
         </div>
       {/each}
     </div>
-    <div class="flex justify-center">
-      <Button variant="outline"  href="/projects" class="w-[14rem]">
+    <div class="flex justify-center mt-[1rem]">
+      <Button variant="outline" padding="py-[0.5rem] px-[1rem]" href="/projects" data-sveltekit-preload-data="hover" class="w-[14rem]">
         View More Projects
       </Button>
     </div>

@@ -7,7 +7,8 @@
     class: className = '', 
     padding = 'p-[1rem]',
     onclick = undefined, 
-    children 
+    children,
+    ...rest
   } = $props();
 
   const baseClasses = "interactable font-semibold transition-all duration-300";
@@ -31,7 +32,7 @@
 </script>
 
 {#if href}
-  <a {href} {target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} class="{baseClasses} {variantClasses()} {className}" {onclick}>
+  <a {href} {target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} class="{baseClasses} {variantClasses()} {className}" {onclick} {...rest}>
     {#if variant === 'text-icon'}
       <span>{@render children()}</span>
       {#if icon}
@@ -42,7 +43,7 @@
     {/if}
   </a>
 {:else}
-  <button class="{baseClasses} {variantClasses()} {className}" {onclick}>
+  <button class="{baseClasses} {variantClasses()} {className}" {onclick} {...rest}>
     {#if variant === 'text-icon'}
       <span>{@render children()}</span>
       {#if icon}

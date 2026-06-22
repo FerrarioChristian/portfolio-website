@@ -33,7 +33,7 @@
   
   <!-- Title Section: fills the screen alongside the 13vh Header -->
   <section id="title-section" class="relative lg:h-[87vh] flex flex-col justify-center items-center px-[5%] text-center">
-    <a href="/" class="interactable text-black dark:text-white hover:underline hover:decoration-gray-300 underline-offset-[0.5rem] transition-all duration-300 mb-[2rem]">
+    <a href="/" data-sveltekit-preload-data="hover" class="interactable text-black dark:text-white hover:underline hover:decoration-gray-300 underline-offset-[0.5rem] transition-all duration-300 mb-[2rem]">
       &larr; Back to home
     </a>
     <h1 class="text-[3rem] lg:text-[4rem] font-bold dark:text-white tracking-tight">More of my projects</h1>
@@ -57,7 +57,7 @@
           
           <!-- Image -->
           <div class="w-full md:w-1/2 flex justify-center relative group">
-            <div class="relative w-full aspect-[4/3] overflow-hidden rounded-[calc(2rem*var(--brm))] corner-squircle">
+            <div class="relative w-full aspect-[4/3] overflow-hidden rounded-[calc(2rem*var(--brm))] corner-squircle shadow-2xl dark:shadow-[0_0_40px_rgba(255,255,255,0.07)]">
               <img src={project.imageLight} alt={project.title} class="w-full h-full object-cover block dark:hidden transition-transform duration-700 group-hover:scale-105" />
               <img src={project.imageDark} alt={project.title} class="w-full h-full object-cover hidden dark:block transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -76,7 +76,11 @@
             <p class="text-[var(--color-brand-gray)] dark:text-gray-400 mb-[3rem] text-[1.2rem] leading-relaxed font-light">{project.description}</p>
             
             <div class="flex gap-[2rem] flex-wrap text-[1.1rem]">
-              <Button variant="text" onclick={() => selectedProject = project}>
+              <Button 
+                variant="text" 
+                onclick={() => selectedProject = project}
+                onmouseenter={() => import(`../../lib/content/projects/${project.slug}.svelte`).catch(() => {})}
+              >
                 View Case Study
               </Button>
               <Button variant="text" href={project.github} target="_blank">

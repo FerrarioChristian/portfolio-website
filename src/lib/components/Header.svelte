@@ -8,13 +8,13 @@
 
 <!-- DESKTOP NAV -->
 <nav id="desktop-nav" class="lg:snap-start hidden lg:flex justify-around items-center h-[13vh]">
-  <a class="text-[2rem] interactable hover:scale-none text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300" href="/">Christian Ferrario</a>
+  <a data-sveltekit-preload-data="hover" class="text-[2rem] interactable hover:scale-none text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300" href="/">Christian Ferrario</a>
   <div>
     <ul class="flex gap-8 list-none text-[1.5rem]">
-      <li><a href="/#about" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">About</a></li>
-      <li><a href="/#experience" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Experience</a></li>
-      <li><a href="/#projects" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Projects</a></li>
-      <li><a href="/#contact" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Contact</a></li>
+      <li><a data-sveltekit-preload-data="hover" href="/#about" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">About</a></li>
+      <li><a data-sveltekit-preload-data="hover" href="/#experience" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Experience</a></li>
+      <li><a data-sveltekit-preload-data="hover" href="/#projects" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Projects</a></li>
+      <li><a data-sveltekit-preload-data="hover" href="/#contact" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -34,10 +34,10 @@
     </button>
     <div class="absolute top-full right-0 bg-white dark:bg-[#1a1a1a] w-max overflow-hidden transition-all duration-300 ease-in-out {isMenuOpen ? 'max-h-[300px]' : 'max-h-0'}">
       <ul class="list-none p-0 m-0">
-        <li><a href="/#about" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">About</a></li>
-        <li><a href="/#experience" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Experience</a></li>
-        <li><a href="/#projects" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Projects</a></li>
-        <li><a href="/#contact" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Contact</a></li>
+        <li><a data-sveltekit-preload-data="hover" href="/#about" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">About</a></li>
+        <li><a data-sveltekit-preload-data="hover" href="/#experience" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Experience</a></li>
+        <li><a data-sveltekit-preload-data="hover" href="/#projects" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Projects</a></li>
+        <li><a data-sveltekit-preload-data="hover" href="/#contact" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Contact</a></li>
       </ul>
     </div>
   </div>
