@@ -1,0 +1,42 @@
+name: Build and Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Build & Sync
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' 
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build static site
+        run: npm run build
+
+      - name: 🚀 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          # Indirizzo del server (es. ftp.tuodominio.it)
+          server: ${{ secrets.SERVER_HOST }}
+          # Username per l'accesso FTP
+          username: ${{ secrets.SERVER_USER }}
+          # Password per l'accesso FTP
+          password: ${{ secrets.SERVER_PASSWORD }}
+          # Cartella locale generata dalla build di SvelteKit
+          local-dir: ./build/
+          # La cartella di destinazione sul server FTP. 
+          # Modifica questo percorso a seconda di dove si trova la root del tuo hosting (spesso è /public_html/portfolio/ o semplicemente /portfolio/)
+          server-dir: /www/portfolio/

@@ -37,7 +37,7 @@
       &larr; Back to home
     </a>
     <h1 class="text-[3rem] lg:text-[4rem] font-bold dark:text-white tracking-tight">More of my projects</h1>
-    <img src="/assets/og-preview.png" alt="Projects Banner" class="w-[70%] rounded-[calc(1rem*var(--brm))] corner-squircle mt-6 mb-4" />
+    <img src="/assets/banner.png" alt="Projects Banner" class="w-[70%] rounded-[calc(1rem*var(--brm))] corner-squircle mt-6 mb-4" />
     <p class="text-[var(--color-brand-gray)] dark:text-gray-400 mt-[1.5rem] text-[1.1rem] lg:text-[1.3rem] max-w-[45rem] leading-relaxed">
       Here you can explore personal projects I've built in my free time, along with select work from my university courses.
     </p>
@@ -89,6 +89,11 @@
               {#if project.demo}
                 <Button variant="text" href={project.demo} target="_blank">
                   Live Demo
+                </Button>
+              {/if}
+              {#if project.report}
+                <Button variant="text" href={project.report} target="_blank">
+                  Download Report
                 </Button>
               {/if}
             </div>
