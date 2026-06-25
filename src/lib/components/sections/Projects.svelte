@@ -8,7 +8,7 @@
   <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-center">Browse My Recent</p>
   <h1 class="text-[2rem] lg:text-[3rem] text-center mb-[2rem] dark:text-white">Projects</h1>
   <div class="flex mx-auto max-w-[100rem] justify-center flex-col w-full mt-[2rem] lg:mt-0">
-    <div class="flex gap-[2rem] mb-[2rem] mt-[2rem] lg:mt-0 flex-col xl:flex-row flex-wrap">
+    <div class="flex gap-[2rem] mb-[2rem] mt-[2rem] lg:mt-0 flex-col xl:flex-row">
       {#each featuredProjects as project}
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -16,11 +16,11 @@
           class="flex-1 min-w-[17rem] p-[1.5rem] bg-[var(--color-brand-bg)] dark:bg-black rounded-[calc(2rem*var(--brm))] corner-squircle border-[0.1rem] border-[#a3a3a3] dark:border-gray-600 text-center flex flex-col interactable cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl dark:hover:shadow-white/5 group"
           onclick={() => location.href=`/projects?scrollTo=${project.slug}`}
         >
-          <div class="flex flex-wrap flex-row justify-around">
-            <img src={project.imageLight} alt={project.title} class="rounded-[calc(2rem*var(--brm))] corner-squircle w-[90%] h-[90%] block dark:hidden" />
-            <img src={project.imageDark} alt={project.title} class="rounded-[calc(2rem*var(--brm))] corner-squircle w-[90%] h-[90%] hidden dark:block" />
+          <div class="flex flex-wrap flex-row justify-around h-[70%] aspect-square">
+            <img src={project.imageLight} alt={project.title} class="rounded-[calc(2rem*var(--brm))] corner-squircle block dark:hidden object-cover" />
+            <img src={project.imageDark} alt={project.title} class="rounded-[calc(2rem*var(--brm))] corner-squircle hidden dark:block object-cover" />
           </div>
-          <h2 class="text-[1.25rem] sm:text-[1.5rem] font-semibold text-black dark:text-white mb-8">{project.title}</h2>
+          <h2 class="text-[1.25rem] sm:text-[1.5rem] font-semibold text-black dark:text-white mt-4 mb-8 ">{project.title}</h2>
           <div class="flex justify-center mt-auto">
             <Button 
               variant="outline" 

@@ -79,11 +79,11 @@
         <main class="w-full box-border pb-[4rem]">
         
         <!-- Apple-style Hero Image (Top) -->
-        <section class="w-full h-[50vh] sm:h-[65vh] relative mb-[3rem] lg:mb-[5rem] rounded-t-[2rem] overflow-hidden bg-gray-100 dark:bg-[#111]">
+        <section class="w-full h-[50vh] sm:h-[65vh] relative mb-12 lg:mb-16 rounded-t-3xl overflow-hidden bg-gray-100 dark:bg-black">
           <img src={project.imageLight} alt={project.title} class="w-full h-full object-cover block dark:hidden" />
           <img src={project.imageDark} alt={project.title} class="w-full h-full object-cover hidden dark:block" />
           <!-- Subtle gradient overlay at the bottom to blend with the white/black background -->
-          <div class="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-14 sm:h-20 bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none"></div>
         </section>
 
         <!-- Project Title & Info -->
@@ -142,6 +142,19 @@
             </div>
           {/if}
         </section>
+
+        <!-- Dynamic Tech Stack (Global for all projects) -->
+        {#if project.technologies && project.technologies.length > 0}
+        <section class="border-t border-gray-200 dark:border-gray-800 pt-[4rem] px-[5%] lg:px-0 max-w-[50rem] mx-auto text-center">
+          <h3 class="text-[1rem] font-bold mb-[2rem] dark:text-white uppercase tracking-[0.3em] text-gray-400">Tech Stack</h3>
+          <div class="flex flex-wrap justify-center gap-[1rem]">
+            {#each project.technologies as tech}
+              <span class="px-[1.5rem] py-[0.8rem] bg-gray-100 dark:bg-[#1a1a1a] rounded-full text-[1rem] text-gray-700 dark:text-gray-300 font-medium">{tech}</span>
+            {/each}
+          </div>
+        </section>
+        {/if}
+
       </main>
     </div>
   </div>
