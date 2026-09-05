@@ -26,6 +26,15 @@
 				} else {
 					document.documentElement.classList.remove('dark');
 				}
+
+				var savedLoc = localStorage.getItem('locale');
+				if (savedLoc === 'it' || savedLoc === 'en') {
+					document.documentElement.lang = savedLoc;
+				} else if (navigator.language && navigator.language.toLowerCase().startsWith('it')) {
+					document.documentElement.lang = 'it';
+				} else {
+					document.documentElement.lang = 'en';
+				}
 			} catch (_) {}
 		</script>
 		%sveltekit.head%

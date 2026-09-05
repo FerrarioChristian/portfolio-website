@@ -1,4 +1,6 @@
 <script lang="ts">
+  import LanguageToggle from '$lib/components/LanguageToggle.svelte';
+
   let isMenuOpen = $state(false);
 
   function toggleMenu() {
@@ -9,13 +11,14 @@
 <!-- DESKTOP NAV -->
 <nav id="desktop-nav" class="lg:snap-start hidden lg:flex justify-around items-center h-[13vh]">
   <a data-sveltekit-preload-data="hover" class="text-[2rem] interactable hover:scale-none text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300" href="/">Christian Ferrario</a>
-  <div>
+  <div class="flex items-center gap-6 lg:gap-8">
     <ul class="flex gap-8 list-none text-[1.5rem]">
       <li><a data-sveltekit-preload-data="hover" href="/#about" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">About</a></li>
       <li><a data-sveltekit-preload-data="hover" href="/#experience" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Experience</a></li>
       <li><a data-sveltekit-preload-data="hover" href="/#projects" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Projects</a></li>
       <li><a data-sveltekit-preload-data="hover" href="/#contact" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Contact</a></li>
     </ul>
+    <LanguageToggle />
   </div>
 </nav>
 
@@ -38,6 +41,9 @@
         <li><a data-sveltekit-preload-data="hover" href="/#experience" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Experience</a></li>
         <li><a data-sveltekit-preload-data="hover" href="/#projects" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Projects</a></li>
         <li><a data-sveltekit-preload-data="hover" href="/#contact" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Contact</a></li>
+        <li class="py-3 flex justify-center border-t border-gray-100 dark:border-zinc-800 mt-2">
+          <LanguageToggle />
+        </li>
       </ul>
     </div>
   </div>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
+  import LanguageToggle from '$lib/components/LanguageToggle.svelte';
   import type { Project } from '$lib/data/projects';
+  import { getLocale, t } from '$lib/i18n/locale.svelte';
   import { onMount } from 'svelte';
 
   let { project, onClose }: { project: Project; onClose: () => void } = $props();
@@ -10,13 +12,16 @@
   let isClosing = $state(false);
 
   $effect(() => {
+    const locale = getLocale();
     if (project) {
       document.body.style.overflow = 'hidden';
       CustomContent = null;
       contentError = false;
       isClosing = false;
       
-      import(`../content/projects/${project.slug}.svelte`)
+      import(`../content/projects/${locale}/${project.slug}.svelte`)
+        .catch(() => import(`../content/projects/it/${project.slug}.svelte`))
+        .catch(() => import(`../content/projects/${project.slug}.svelte`))
         .then((module) => {
           CustomContent = module.default;
         })
@@ -64,11 +69,14 @@
         class="relative w-full max-w-[100rem] min-h-[90vh] h-fit bg-white dark:bg-black rounded-3xl shadow-[0_-20px_60px_rgba(0,0,0,0.15)] dark:shadow-none {isClosing ? 'animate-slide-down' : 'animate-slide-up'}"
         onclick={(e) => e.stopPropagation()}
       >
-        <!-- Sticky zero-height container for the close button -->
-        <div class="sticky top-[1.5rem] right-0 z-50 w-full h-0 flex justify-end">
+        <!-- Sticky zero-height container for the close button and language toggle -->
+        <div class="sticky top-[1.5rem] right-0 z-50 w-full h-0 flex justify-end items-center gap-2 pr-[1.5rem]">
+          <div class="mt-[1.5rem] rounded-full shadow-md backdrop-blur-md bg-white/70 dark:bg-black/70">
+            <LanguageToggle compact={true} />
+          </div>
           <button 
             onclick={handleClose}
-            class="mr-[1.5rem] mt-[1.5rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 backdrop-blur-md text-black dark:text-white rounded-full transition-colors"
+            class="mt-[1.5rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 backdrop-blur-md text-black dark:text-white rounded-full transition-colors"
             aria-label="Close"
           >
             <span class="material-symbols-rounded block">close</span>
@@ -103,7 +111,7 @@
             </div>
             
             <p class="text-[1.2rem] lg:text-[1.5rem] text-[var(--color-brand-gray)] dark:text-gray-300 leading-relaxed font-light max-w-[50rem]">
-              {project.description}
+              {t(project.description)}
             </p>
             
             <div class="flex gap-[1.5rem] flex-wrap mt-[1rem] items-center">
@@ -132,8 +140,9 @@
             <div class="p-[3rem] bg-gray-50 dark:bg-[#111] rounded-[2rem] border-[0.1rem] border-gray-200 dark:border-gray-800 text-center">
               <h3 class="text-[2rem] font-bold text-black dark:text-white mb-[1rem]">Work in Progress</h3>
               <p class="text-[1.1rem] text-[var(--color-brand-gray)] dark:text-gray-400 font-light leading-relaxed">
-                Nessun contenuto personalizzato trovato per questo progetto.<br />
-                Crea il file <code>src/lib/content/projects/{project.slug}.svelte</code> per iniziare a scrivere la presentazione!
+                {getLocale() === 'it'
+                  ? 'Nessun contenuto personalizzato trovato per questo progetto.'
+                  : 'No custom case study found for this project yet.'}
               </p>
             </div>
           {:else}
