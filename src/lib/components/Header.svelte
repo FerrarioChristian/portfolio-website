@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import LanguageToggle from '$lib/components/LanguageToggle.svelte';
 
   let isMenuOpen = $state(false);
@@ -6,16 +7,32 @@
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
   }
+
+  let isProjectsPage = $derived($page.url.pathname.startsWith('/projects'));
 </script>
 
 <!-- DESKTOP NAV -->
 <nav id="desktop-nav" class="lg:snap-start hidden lg:flex justify-around items-center h-[13vh]">
-  <a data-sveltekit-preload-data="hover" class="text-[2rem] interactable hover:scale-none text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300" href="/">Christian Ferrario</a>
+  <div class="flex items-center gap-3">
+    <a data-sveltekit-preload-data="hover" class="text-[2rem] interactable hover:scale-none text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300" href="/">Christian Ferrario</a>
+    {#if isProjectsPage}
+      <span class="text-gray-400 dark:text-zinc-600 font-light text-[1.6rem] select-none">/</span>
+      <span class="text-[1.5rem] text-gray-500 dark:text-gray-400">projects</span>
+    {/if}
+  </div>
   <div class="flex items-center gap-6 lg:gap-8">
     <ul class="flex gap-8 list-none text-[1.5rem]">
       <li><a data-sveltekit-preload-data="hover" href="/#about" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">About</a></li>
       <li><a data-sveltekit-preload-data="hover" href="/#experience" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Experience</a></li>
-      <li><a data-sveltekit-preload-data="hover" href="/#projects" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Projects</a></li>
+      <li>
+        <a
+          data-sveltekit-preload-data="hover"
+          href={isProjectsPage ? "/projects" : "/#projects"}
+          class="interactable text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-300 underline-offset-[1rem] transition-all duration-300 {isProjectsPage ? 'underline decoration-black dark:decoration-white hover:decoration-gray-300' : 'no-underline hover:underline hover:decoration-gray-300'}"
+        >
+          Projects
+        </a>
+      </li>
       <li><a data-sveltekit-preload-data="hover" href="/#contact" class="interactable text-black dark:text-white no-underline hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[1rem] transition-all duration-300">Contact</a></li>
     </ul>
     <LanguageToggle />
@@ -24,7 +41,13 @@
 
 <!-- HAMBURGER NAV -->
 <nav id="hamburger-nav" class="flex lg:hidden justify-around items-center h-[10vh]">
-  <div class="text-[2rem]">Christian Ferrario</div>
+  <div class="flex items-center gap-2 text-[1.6rem] sm:text-[2rem]">
+    <div>Christian Ferrario</div>
+    {#if isProjectsPage}
+      <span class="text-gray-400 dark:text-zinc-600 font-light text-[1.3rem] select-none">/</span>
+      <span class="text-[1.2rem] text-gray-500 dark:text-gray-400">projects</span>
+    {/if}
+  </div>
   <div class="relative inline-block z-[1]">
     <button 
       class="flex flex-col justify-between h-[24px] w-[30px] bg-transparent border-none interactable" 
@@ -39,7 +62,16 @@
       <ul class="list-none p-0 m-0">
         <li><a data-sveltekit-preload-data="hover" href="/#about" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">About</a></li>
         <li><a data-sveltekit-preload-data="hover" href="/#experience" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Experience</a></li>
-        <li><a data-sveltekit-preload-data="hover" href="/#projects" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Projects</a></li>
+        <li>
+          <a
+            data-sveltekit-preload-data="hover"
+            href={isProjectsPage ? "/projects" : "/#projects"}
+            onclick={toggleMenu}
+            class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300 {isProjectsPage ? 'underline underline-offset-[0.5rem]' : 'no-underline'}"
+          >
+            Projects
+          </a>
+        </li>
         <li><a data-sveltekit-preload-data="hover" href="/#contact" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Contact</a></li>
         <li class="py-3 flex justify-center border-t border-gray-100 dark:border-zinc-800 mt-2">
           <LanguageToggle />

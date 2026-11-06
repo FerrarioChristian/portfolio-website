@@ -7,49 +7,17 @@
   import ProjectModal from '$lib/components/ProjectModal.svelte';
   import { projects } from '$lib/data/projects';
   import type { Project } from '$lib/data/projects';
+  import { getLocale, t } from '$lib/i18n/locale.svelte';
 
   let mainProjects = projects.filter(p => !p.isMinor);
   let minorProjects = projects.filter(p => p.isMinor);
 
   let selectedProject: Project | null = $state(null);
-  let currentCarouselIndex = $state(0);
-  
-  function handleCarouselScroll(e: Event) {
-    const target = e.target as HTMLElement;
-    
-    if (target.scrollLeft >= target.scrollWidth - target.clientWidth - 5) {
-      currentCarouselIndex = minorProjects.length - 1;
-      return;
-    }
-    if (target.scrollLeft <= 5) {
-      currentCarouselIndex = 0;
-      return;
-    }
-    
-    const containerCenter = target.scrollLeft + (target.clientWidth / 2);
-    let closestIndex = 0;
-    let minDistance = Infinity;
-    
-    Array.from(target.children).forEach((child, index) => {
-      const el = child as HTMLElement;
-      const childCenter = el.offsetLeft - target.offsetLeft + (el.clientWidth / 2);
-      const distance = Math.abs(childCenter - containerCenter);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
-    
-    currentCarouselIndex = closestIndex;
-  }
-  
-  function scrollCarouselTo(index: number) {
-    const el = document.getElementById(`minor-card-${index}`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    }
-  }
+
+  import ProjectsHero from '$lib/components/sections/ProjectsHero.svelte';
+  import MinorProjects from '$lib/components/sections/MinorProjects.svelte';
+
+  let locale = $derived(getLocale());
 
   onMount(() => {
     const scrollToId = $page.url.searchParams.get('scrollTo');
@@ -71,26 +39,24 @@
 <Header />
 
 <main class="w-full box-border mb-[4rem] lg:mb-0">
-  
-  <!-- Title Section: fills the screen alongside the 13vh Header -->
-  <section id="title-section" class="relative lg:h-[87vh] flex flex-col justify-center items-center px-[5%] text-center">
-    <a href="/" data-sveltekit-preload-data="hover" class="interactable text-black dark:text-white hover:underline hover:decoration-gray-300 underline-offset-[0.5rem] transition-all duration-300 mb-[2rem]">
-      &larr; Back to home
-    </a>
-    <h1 class="text-[3rem] lg:text-[4rem] font-bold dark:text-white tracking-tight">More of my projects</h1>
-    <img src="/assets/banner.png" alt="Projects Banner" class="w-[70%] rounded-[calc(1rem*var(--brm))] corner-squircle mt-6 mb-4" />
-    <p class="text-[var(--color-brand-gray)] dark:text-gray-400 mt-[1.5rem] text-[1.1rem] lg:text-[1.3rem] max-w-[45rem] leading-relaxed">
-      Here you can explore personal projects I've built in my free time, along with select work from my university courses.
-    </p>
-    
+  <div id="title-section" class="relative w-full">
+    <!-- Projects Hero Section -->
+    <section
+      id="hero"
+      class="relative min-h-[85vh] lg:h-[87vh] flex flex-col justify-start items-center px-[5%] text-center pt-2 sm:pt-4 lg:pt-5 pb-4"
+    >
+      <ProjectsHero />
+    </section>
+
     <button
-      class="absolute right-[3rem] bottom-[2.5rem] hidden lg:block cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none"
-      onclick={() => location.href=`#${mainProjects[0].slug}`}
+      class="interactable absolute right-[3rem] bottom-[2.5rem] hidden lg:block transition-all duration-300 hover:scale-110 focus:outline-none"
+      data-type="internal"
+      onclick={() => { const el = document.getElementById(mainProjects[0]?.slug || 'sportrack'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
       aria-label="Scroll to first project"
     >
-      <img src="/assets/arrow.png" alt="" class="h-[2rem] scale-125 dark:invert" />
+      <img src="/assets/arrow.png" alt="" class="h-[2rem] scale-125 dark:invert pointer-events-none" />
     </button>
-  </section>
+  </div>
   
   <div class="flex flex-col w-full">
     {#each mainProjects as project, i}
@@ -115,26 +81,27 @@
               {/each}
             </div>
 
-            <p class="text-[var(--color-brand-gray)] dark:text-gray-400 mb-[3rem] text-[1.2rem] leading-relaxed font-light">{project.description}</p>
+            <p class="text-[var(--color-brand-gray)] dark:text-gray-400 mb-[3rem] text-[1.2rem] leading-relaxed font-light">{t(project.description)}</p>
             
             <div class="flex gap-[2rem] flex-wrap text-[1.1rem]">
               <Button 
                 variant="text" 
+                data-type="internal"
                 onclick={() => selectedProject = project}
-                onmouseenter={() => import(`../../lib/content/projects/${project.slug}.svelte`).catch(() => {})}
+                onmouseenter={() => import(`../../lib/content/projects/${getLocale()}/${project.slug}.svelte`).catch(() => {})}
               >
                 View Case Study
               </Button>
-              <Button variant="text" href={project.github} target="_blank">
+              <Button variant="text" href={project.github} target="_blank" data-type="external">
                 GitHub
               </Button>
               {#if project.demo}
-                <Button variant="text" href={project.demo} target="_blank">
+                <Button variant="text" href={project.demo} target="_blank" data-type="external">
                   Live Demo
                 </Button>
               {/if}
               {#if project.report}
-                <Button variant="text" href={project.report} target="_blank">
+                <Button variant="text" href={project.report} target="_blank" data-type="external">
                   Download Report
                 </Button>
               {/if}
@@ -145,19 +112,21 @@
 
         {#if i < mainProjects.length - 1}
           <button
-            class="absolute right-[3rem] bottom-[2.5rem] hidden lg:block cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none"
+            class="interactable absolute right-[3rem] bottom-[2.5rem] hidden lg:block transition-all duration-300 hover:scale-110 focus:outline-none"
+            data-type="internal"
             onclick={() => location.href=`#${mainProjects[i+1].slug}`}
             aria-label="Scroll to next project"
           >
-            <img src="/assets/arrow.png" alt="" class="h-[2rem] scale-125 dark:invert" />
+            <img src="/assets/arrow.png" alt="" class="h-[2rem] scale-125 dark:invert pointer-events-none" />
           </button>
         {:else if minorProjects.length > 0}
           <button
-            class="absolute right-[3rem] bottom-[2.5rem] hidden lg:block cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none"
+            class="interactable absolute right-[3rem] bottom-[2.5rem] hidden lg:block transition-all duration-300 hover:scale-110 focus:outline-none"
+            data-type="internal"
             onclick={() => location.href=`#minor-projects`}
             aria-label="Scroll to minor projects"
           >
-            <img src="/assets/arrow.png" alt="" class="h-[2rem] scale-125 dark:invert" />
+            <img src="/assets/arrow.png" alt="" class="h-[2rem] scale-125 dark:invert pointer-events-none" />
           </button>
         {/if}
       </section>
@@ -165,59 +134,12 @@
 
     {#if minorProjects.length > 0}
       <!-- Minor Projects Section -->
-      <section id="minor-projects" class="relative lg:snap-start w-full min-h-screen flex flex-col justify-between pt-[3rem] lg:pt-[4rem] bg-gray-50 dark:bg-black box-border">
-        
-        <div class="w-full max-w-[100rem] mx-auto px-[5%] lg:px-[5rem] flex-grow flex flex-col justify-center">
-          <h2 class="text-[2rem] lg:text-[3.5rem] font-bold text-black dark:text-white mb-[1.5rem] lg:mb-[2rem] tracking-tight">Other Explorations</h2>
-          
-          <!-- Horizontal Scroll Carousel -->
-          <div onscroll={handleCarouselScroll} class="flex overflow-x-auto gap-[1.5rem] pb-[1rem] snap-x snap-mandatory scroll-smooth no-scrollbar items-stretch w-full">
-            {#each minorProjects as project, idx}
-              <div id={`minor-card-${idx}`} class="w-[280px] md:w-[380px] flex-shrink-0 snap-center lg:snap-start flex flex-col p-[1.8rem] bg-white dark:bg-[#0a0a0a] rounded-[1.5rem] border border-gray-200 dark:border-gray-800">
-                <h3 class="text-[1.5rem] font-bold text-black dark:text-white mb-[0.8rem]">{project.title}</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-[1rem] font-light leading-relaxed mb-[1.5rem] flex-grow">
-                  {project.description}
-                </p>
-                
-                <div class="flex flex-wrap gap-[0.5rem] mb-[2rem]">
-                  {#each project.technologies.slice(0, 3) as tech}
-                    <span class="px-[0.8rem] py-[0.3rem] bg-gray-100 dark:bg-[#1a1a1a] text-[0.7rem] tracking-widest uppercase rounded-full text-gray-700 dark:text-gray-300 font-semibold">{tech}</span>
-                  {/each}
-                  {#if project.technologies.length > 3}
-                    <span class="px-[0.8rem] py-[0.3rem] text-[0.7rem] tracking-widest uppercase text-gray-500 font-semibold">+{project.technologies.length - 3}</span>
-                  {/if}
-                </div>
-                
-                <div class="flex gap-[1rem] flex-wrap mt-auto">
-                  <a href={project.github} target="_blank" class="text-[0.95rem] font-bold text-black dark:text-white hover:opacity-70 transition-opacity flex items-center gap-[0.3rem]">
-                    <span class="material-symbols-rounded text-[1.1rem]">code</span> GitHub
-                  </a>
-                  {#if project.demo}
-                    <a href={project.demo} target="_blank" class="text-[0.95rem] font-bold text-black dark:text-white hover:opacity-70 transition-opacity flex items-center gap-[0.3rem]">
-                      <span class="material-symbols-rounded text-[1.1rem]">open_in_new</span> Demo
-                    </a>
-                  {/if}
-                </div>
-              </div>
-            {/each}
-          </div>
-
-          <!-- Pagination Dots -->
-          <div class="flex justify-center items-center mt-[1rem]">
-            {#each minorProjects as _, idx}
-              <button
-                class="px-[0.4rem] py-[0.8rem] cursor-pointer group flex items-center justify-center focus:outline-none"
-                onclick={() => scrollCarouselTo(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              >
-                <span class="rounded-full transition-all duration-300 {currentCarouselIndex === idx ? 'w-[0.6rem] h-[0.6rem] bg-black dark:bg-white scale-125' : 'w-[0.5rem] h-[0.5rem] bg-gray-300 dark:bg-gray-700 group-hover:bg-gray-400 dark:group-hover:bg-gray-500'}"></span>
-              </button>
-            {/each}
-          </div>
+      <section id="minor-projects" class="relative lg:snap-start w-full min-h-screen lg:h-screen lg:max-h-screen lg:min-h-0 flex flex-col justify-between pt-6 lg:pt-8 pb-3 lg:pb-4 px-[5%] lg:px-[5rem] box-border bg-gray-50 dark:bg-black lg:overflow-hidden">
+        <div class="w-full my-auto">
+          <MinorProjects />
         </div>
-
-        <div class="mt-auto w-full">
-          <Footer />
+        <div class="mt-auto w-full shrink-0">
+          <Footer snap={false} compact={true} />
         </div>
       </section>
     {:else}
@@ -230,12 +152,4 @@
   <ProjectModal project={selectedProject} onClose={() => selectedProject = null} />
 {/if}
 
-<style>
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-</style>
+
