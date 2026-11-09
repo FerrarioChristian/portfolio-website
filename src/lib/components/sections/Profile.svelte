@@ -15,17 +15,20 @@
     <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-center">Hello, I'm</p>
     <h1 class="text-[2rem] lg:text-[3rem] text-center dark:text-white">Christian Ferrario</h1>
     <p class="font-semibold text-[var(--color-brand-gray)] dark:text-gray-300 text-[1.25rem] lg:text-[1.75rem] mb-[1rem]">Software Engineer</p>
-    <div class="flex justify-center gap-[1rem] flex-wrap lg:flex-nowrap" data-type="link">
+    <div class="flex justify-center gap-[1rem] flex-wrap lg:flex-nowrap">
       <Button
         variant="filled"
-        onclick={() => window.open('/assets/CV Christian Ferrario.pdf')}
+        href="/assets/CV Christian Ferrario.pdf"
+        target="_blank"
+        data-type="external"
         class="w-[8rem] box-content"
       >
         Download CV
       </Button>
       <Button
         variant="outline"
-        onclick={() => location.href='#contact'}
+        href="#contact"
+        data-type="internal"
         class="w-[8rem] box-content"
       >
         Contact Info
@@ -37,11 +40,12 @@
         href="https://www.linkedin.com/in/christian-ferrario/"
         target="_blank"
         rel="noopener noreferrer"
+        data-type="external"
       >
         <img
           src="/assets/linkedin.png"
           alt="My LinkedIn profile"
-          class="h-[2rem] dark:invert transition-all duration-300"
+          class="h-[2rem] dark:invert transition-all duration-300 pointer-events-none"
         />
       </a>
 
@@ -50,11 +54,12 @@
         href="https://github.com/FerrarioChristian/"
         target="_blank"
         rel="noopener noreferrer"
+        data-type="external"
       >
         <img
           src="/assets/github.png"
           alt="My Github profile"
-          class="h-[2rem] dark:invert transition-all duration-300"
+          class="h-[2rem] dark:invert transition-all duration-300 pointer-events-none"
         />
       </a>
     </div>
@@ -64,7 +69,8 @@
   <img
     src="/assets/arrow.png"
     alt="Arrow icon"
-    class="h-[2rem] absolute right-[3rem] bottom-[2.5rem] scale-125 interactable hidden lg:block cursor-pointer dark:invert transition-all duration-300"
+    class="h-[2rem] absolute right-[3rem] bottom-[2.5rem] scale-125 interactable hidden lg:block dark:invert transition-all duration-300"
+    data-type="internal"
     onclick={() => location.href='#about'}
   />
 </section>

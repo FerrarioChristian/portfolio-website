@@ -26,8 +26,12 @@
   }
 
   @media (min-width: 640px) {
-    * {
-      cursor: none;
+    html,
+    body,
+    *,
+    *::before,
+    *::after {
+      cursor: none !important;
     }
   }
   

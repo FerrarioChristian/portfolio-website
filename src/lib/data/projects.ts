@@ -91,10 +91,10 @@ export const projects: Project[] = [
   {
     slug: 'timetrack',
     title: 'Timetrack',
-    imageLight: '/assets/project-wip.jpg',
-    imageDark: '/assets/project-wip-dark.jpg',
+    imageLight: '/assets/projects/timetrack/cover.jpg',
+    imageDark: '/assets/projects/timetrack/cover.jpg',
     github: 'https://github.com/FerrarioChristian/timetrack',
-    demo: '',
+    demo: 'https://timetrack.ferraa.it',
     technologies: ['Java 23', 'Spring Boot 3', 'Spring Security', 'PostgreSQL', 'Thymeleaf', 'Tailwind CSS', 'Chart.js'],
     description: {
       it: 'Web app di produttività full-stack con tracciamento attività in tempo reale, modalità Pomodoro, obiettivi dinamici e analisi Chart.js in una UI dark in stile Shadcn.',

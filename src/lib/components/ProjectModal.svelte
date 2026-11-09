@@ -1,6 +1,5 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
-  import LanguageToggle from '$lib/components/LanguageToggle.svelte';
   import type { Project } from '$lib/data/projects';
   import { getLocale, t } from '$lib/i18n/locale.svelte';
   import { onMount } from 'svelte';
@@ -69,17 +68,15 @@
         class="relative w-full max-w-[100rem] min-h-[90vh] h-fit bg-white dark:bg-black rounded-3xl shadow-[0_-20px_60px_rgba(0,0,0,0.15)] dark:shadow-none {isClosing ? 'animate-slide-down' : 'animate-slide-up'}"
         onclick={(e) => e.stopPropagation()}
       >
-        <!-- Sticky zero-height container for the close button and language toggle -->
-        <div class="sticky top-[1.5rem] right-0 z-50 w-full h-0 flex justify-end items-center gap-2 pr-[1.5rem]">
-          <div class="mt-[1.5rem] rounded-full shadow-md backdrop-blur-md bg-white/70 dark:bg-black/70">
-            <LanguageToggle compact={true} />
-          </div>
+        <!-- Sticky container for the close button -->
+        <div class="sticky top-0 z-50 w-full flex justify-end pr-6 pt-6 -mb-16 pointer-events-none">
           <button 
             onclick={handleClose}
-            class="mt-[1.5rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 backdrop-blur-md text-black dark:text-white rounded-full transition-colors"
+            data-type="action"
+            class="group pointer-events-auto interactable w-10 h-10 rounded-full corner-squircle flex items-center justify-center bg-white/90 dark:bg-[#1a1a1a]/90 hover:bg-white dark:hover:bg-[#111] backdrop-blur-md border border-gray-200 dark:border-gray-700 shadow-lg text-black dark:text-white transition-all duration-300 hover:scale-110 active:scale-95"
             aria-label="Close"
           >
-            <span class="material-symbols-rounded block">close</span>
+            <span class="material-symbols-rounded block pointer-events-none text-[1.4rem] transition-transform duration-300 ease-in-out group-hover:rotate-90">close</span>
           </button>
         </div>
 
@@ -88,8 +85,8 @@
         
         <!-- Apple-style Hero Image (Top) -->
         <section class="w-full h-[50vh] sm:h-[65vh] relative mb-12 lg:mb-16 rounded-t-3xl overflow-hidden bg-gray-100 dark:bg-black">
-          <img src={project.imageLight} alt={project.title} class="w-full h-full object-cover block dark:hidden" />
-          <img src={project.imageDark} alt={project.title} class="w-full h-full object-cover hidden dark:block" />
+          <img src={project.imageLight} alt={project.title} class="w-full h-full object-cover object-top block dark:hidden" />
+          <img src={project.imageDark} alt={project.title} class="w-full h-full object-cover object-top hidden dark:block" />
           <!-- Subtle gradient overlay at the bottom to blend with the white/black background -->
           <div class="absolute inset-x-0 bottom-0 h-14 sm:h-20 bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none"></div>
         </section>
