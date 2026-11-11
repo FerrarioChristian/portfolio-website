@@ -102,7 +102,7 @@
               {/if}
               {#if project.report}
                 <Button variant="text" href={project.report} target="_blank" data-type="external">
-                  Download Report
+                  Read Report
                 </Button>
               {/if}
             </div>

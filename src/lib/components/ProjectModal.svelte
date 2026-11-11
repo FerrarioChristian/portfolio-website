@@ -121,8 +121,8 @@
                 </Button>
               {/if}
               {#if project.report}
-                <Button variant="text-icon" icon="download" href={project.report} target="_blank">
-                  Download Report
+                <Button variant="text-icon" icon="description" href={project.report} target="_blank">
+                  Read Report
                 </Button>
               {/if}
             </div>
