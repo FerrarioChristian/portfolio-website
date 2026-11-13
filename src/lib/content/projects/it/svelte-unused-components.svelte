@@ -21,12 +21,12 @@
         <li><strong class="text-gray-900 dark:text-white font-semibold">Flessibilità:</strong> Gestione avanzata tramite flag CLI (es. <code>-i</code> per la blacklist, <code>-np</code> per script CI) per un'integrazione perfetta in qualsiasi ambiente di sviluppo.</li>
       </ul>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Output CLI (Terminale)<br/>di svelte-unused-components</span>
     </div>
   </section>
 
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] text-center mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] text-center mt-[2rem]">
     <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Sotto il Cofano</h3>
     <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light max-w-[40rem] mx-auto leading-relaxed mb-[4rem]">
       Come fa l'eseguibile a sapere esattamente cosa è usato e cosa no? La risposta risiede nell'analisi statica dei file sorgenti.

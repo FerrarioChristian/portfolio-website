@@ -12,7 +12,7 @@
 
   <!-- 1. IMAGE LEFT -->
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Analisi Strutturale<br/>e Spy Plots</span>
     </div>
     <div class="order-1 md:order-2">
@@ -38,14 +38,14 @@
         <li><strong class="text-gray-900 dark:text-white font-semibold">Metodi di Discesa:</strong> Discesa del Gradiente e l'ineguagliabile Gradiente Coniugato (CG), capaci di "curvare" dinamicamente la ricerca aggiornando i parametri in base al residuo.</li>
       </ul>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Formule / Modulo Solvers</span>
     </div>
   </section>
 
   <!-- 3. IMAGE LEFT -->
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Command Line Interface</span>
     </div>
     <div class="order-1 md:order-2">
@@ -70,13 +70,13 @@
         I grafici generati affiancano l'errore relativo, i tempi di esecuzione e i contatori di iterazione al variare delle tolleranze, dimostrando empiricamente la schiacciante superiorità algoritmica del Gradiente Coniugato sui metodi stazionari classici.
       </p>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Grafici di Convergenza</span>
     </div>
   </section>
 
   <!-- BOX FINALE: SOTTO IL COFANO -->
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] text-center mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] text-center mt-[2rem]">
     <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Eccellenza Scientifica</h3>
     <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light max-w-[40rem] mx-auto leading-relaxed mb-[4rem]">
       Manipolare matrici di dimensioni spropositate ha richiesto di eludere immensi colli di bottiglia legati alla memoria RAM.

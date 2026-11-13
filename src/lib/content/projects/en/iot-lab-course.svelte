@@ -12,7 +12,7 @@
 
   <!-- 1. IMAGE LEFT -->
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Image: Sensor Node & ESP8266<br/>installed inside display case</span>
     </div>
     <div class="order-1 md:order-2">
@@ -38,14 +38,14 @@
         <li><strong class="text-gray-900 dark:text-white font-semibold">Last Will and Testament:</strong> Using MQTT QoS 1, if a node is physically compromised or loses battery, the broker immediately executes its registered Last Will and Testament (LWT) message, pinpointing the fault and preventing stale alert states.</li>
       </ul>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Image: Architecture Blueprint<br/>(WoT / MQTT Schema)</span>
     </div>
   </section>
 
   <!-- 3. IMAGE LEFT -->
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Image: Telegram Bot Interface<br/>& Captive Portal</span>
     </div>
     <div class="order-1 md:order-2">
@@ -72,13 +72,13 @@
         The firmware executes aggressive <strong>Auto Light-Sleep</strong> routines that disable the Wi-Fi radio between telemetry beacons (cutting power draw by over 75%). Static nodes drop into deep sleep (1.5mA), reawakening exclusively through hardware pin interrupts upon vibration or flame detection.
       </p>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Image: Battery Profiles<br/>Deep/Light Sleep Benchmarks</span>
     </div>
   </section>
 
   <!-- BOX FINALE: UNDER THE HOOD -->
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] text-center mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] text-center mt-[2rem]">
     <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Hardware Challenges</h3>
     <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light max-w-[40rem] mx-auto leading-relaxed mb-[4rem]">
       Writing embedded C++ directly for microcontrollers requires mastering hardware concurrency to guarantee safety-critical responsiveness.

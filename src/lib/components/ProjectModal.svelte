@@ -6,6 +6,8 @@
 
   let { project, onClose }: { project: Project; onClose: () => void } = $props();
 
+  const projectModules = import.meta.glob('../content/projects/**/*.svelte');
+
   let CustomContent: any = $state(null);
   let contentError = $state(false);
   let isClosing = $state(false);
@@ -18,15 +20,22 @@
       contentError = false;
       isClosing = false;
       
-      import(`../content/projects/${locale}/${project.slug}.svelte`)
-        .catch(() => import(`../content/projects/it/${project.slug}.svelte`))
-        .catch(() => import(`../content/projects/${project.slug}.svelte`))
-        .then((module) => {
-          CustomContent = module.default;
-        })
-        .catch(() => {
-          contentError = true;
-        });
+      const keyLocale = `../content/projects/${locale}/${project.slug}.svelte`;
+      const keyIt = `../content/projects/it/${project.slug}.svelte`;
+      const keyRoot = `../content/projects/${project.slug}.svelte`;
+
+      const loader = projectModules[keyLocale] || projectModules[keyIt] || projectModules[keyRoot];
+      if (loader) {
+        loader()
+          .then((module: any) => {
+            CustomContent = module.default;
+          })
+          .catch(() => {
+            contentError = true;
+          });
+      } else {
+        contentError = true;
+      }
     } else {
       document.body.style.overflow = '';
     }
@@ -73,7 +82,7 @@
           <button 
             onclick={handleClose}
             data-type="action"
-            class="group pointer-events-auto interactable w-10 h-10 rounded-full corner-squircle flex items-center justify-center bg-white/90 dark:bg-[#1a1a1a]/90 hover:bg-white dark:hover:bg-[#111] backdrop-blur-md border border-gray-200 dark:border-gray-700 shadow-lg text-black dark:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+            class="group pointer-events-auto interactable w-10 h-10 rounded-full corner-squircle flex items-center justify-center bg-white/90 dark:bg-black/90 hover:bg-white dark:hover:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-lg text-black dark:text-white transition-all duration-300 hover:scale-110 active:scale-95"
             aria-label="Close"
           >
             <span class="material-symbols-rounded block pointer-events-none text-[1.4rem] transition-transform duration-300 ease-in-out group-hover:rotate-90">close</span>
@@ -103,7 +112,7 @@
 
             <div class="flex flex-wrap gap-[0.75rem]">
               {#each project.technologies as tech}
-                <span class="px-[1.2rem] py-[0.4rem] bg-gray-100 dark:bg-[#1a1a1a] text-[0.8rem] tracking-widest uppercase rounded-full text-gray-700 dark:text-gray-300 font-semibold border border-transparent dark:border-gray-700">{tech}</span>
+                <span class="px-[1.2rem] py-[0.4rem] bg-white dark:bg-black text-[0.8rem] tracking-widest uppercase rounded-full text-gray-700 dark:text-gray-300 font-semibold border border-gray-200 dark:border-white/10">{tech}</span>
               {/each}
             </div>
             
@@ -134,7 +143,7 @@
           {#if CustomContent}
             <CustomContent />
           {:else if contentError}
-            <div class="p-[3rem] bg-gray-50 dark:bg-[#111] rounded-[2rem] border-[0.1rem] border-gray-200 dark:border-gray-800 text-center">
+            <div class="p-[3rem] bg-white dark:bg-black rounded-[2rem] border border-gray-200 dark:border-white/10 text-center">
               <h3 class="text-[2rem] font-bold text-black dark:text-white mb-[1rem]">Work in Progress</h3>
               <p class="text-[1.1rem] text-[var(--color-brand-gray)] dark:text-gray-400 font-light leading-relaxed">
                 {getLocale() === 'it'
@@ -151,11 +160,11 @@
 
         <!-- Dynamic Tech Stack (Global for all projects) -->
         {#if project.technologies && project.technologies.length > 0}
-        <section class="border-t border-gray-200 dark:border-gray-800 pt-[4rem] px-[5%] lg:px-0 max-w-[50rem] mx-auto text-center">
+        <section class="pt-[3.5rem] pb-[1rem] px-[5%] lg:px-0 max-w-[50rem] mx-auto text-center">
           <h3 class="text-[1rem] font-bold mb-[2rem] dark:text-white uppercase tracking-[0.3em] text-gray-400">Tech Stack</h3>
           <div class="flex flex-wrap justify-center gap-[1rem]">
             {#each project.technologies as tech}
-              <span class="px-[1.5rem] py-[0.8rem] bg-gray-100 dark:bg-[#1a1a1a] rounded-full text-[1rem] text-gray-700 dark:text-gray-300 font-medium">{tech}</span>
+              <span class="px-[1.5rem] py-[0.8rem] bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-full text-[1rem] text-gray-700 dark:text-gray-300 font-medium">{tech}</span>
             {/each}
           </div>
         </section>

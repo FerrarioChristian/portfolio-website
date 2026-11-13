@@ -12,7 +12,7 @@
 
   <!-- 1. IMAGE LEFT -->
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Sensori ed ESP8266<br/>installati sulla teca</span>
     </div>
     <div class="order-1 md:order-2">
@@ -38,14 +38,14 @@
         <li><strong class="text-gray-900 dark:text-white font-semibold">Last Will and Testament:</strong> La connessione sfrutta il QoS 1 di MQTT. Se un nodo viene distrutto, il broker lancia istantaneamente il "testamento" (LWT), isolando la falla e azzerando i falsi allarmi.</li>
       </ul>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Schema Architettura<br/>(WoT / MQTT)</span>
     </div>
   </section>
 
   <!-- 3. IMAGE LEFT -->
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Telegram Chat<br/>& Captive Portal</span>
     </div>
     <div class="order-1 md:order-2">
@@ -72,13 +72,13 @@
         L'implementazione impone aggressive logiche di <strong>Auto Light-Sleep</strong> che silenziano la radio Wi-Fi tra l'invio dei beacon (riducendo i consumi del 75%). I nodi statici entrano in totale <strong>Deep-Sleep (1.5mA)</strong>, risvegliandosi unicamente tramite interrupt hardware in caso di urto o fiamma prolungata.
       </p>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/3] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Immagine: Grafici Batteria<br/>Deep/Light Sleep</span>
     </div>
   </section>
 
   <!-- BOX FINALE: SOTTO IL COFANO -->
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] text-center mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] text-center mt-[2rem]">
     <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Sfide Hardware</h3>
     <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light max-w-[40rem] mx-auto leading-relaxed mb-[4rem]">
       Sviluppare l'ecosistema in C++ direttamente su microcontrollore impone di padroneggiare la concorrenza hardware per non bloccare mai i sistemi vitali.

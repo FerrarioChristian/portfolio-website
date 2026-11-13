@@ -23,7 +23,7 @@
       </ul>
   </section>
 
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] text-center mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] text-center mt-[2rem]">
     <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Evoluzione Hardcore</h3>
     <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light max-w-[40rem] mx-auto leading-relaxed mb-[4rem]">
       Nato come proof-of-concept in Python usando le API Tuya in cloud (le quali collassavano per via del famigerato rate-limiting), il progetto è stato totalmente ingegnerizzato e ripensato per l'azzeramento della latenza e il calcolo ad alte prestazioni.

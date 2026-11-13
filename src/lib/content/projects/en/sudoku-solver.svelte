@@ -25,12 +25,12 @@
         </div>
       </div>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium">Qt GUI Showcase</span>
     </div>
   </section>
 
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] mt-[2rem]">
     <div class="max-w-[40rem] mx-auto text-center mb-[4rem]">
       <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Excellence in C++ & Qt</h3>
       <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light leading-relaxed">

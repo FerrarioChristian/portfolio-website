@@ -79,20 +79,21 @@
       </div>
 
       <!-- Bottom Tech Summary -->
-      <div class="pt-4 border-t border-gray-200 dark:border-zinc-800 text-xs font-mono text-gray-500 dark:text-zinc-400">
+      <div class="mt-4 pt-1 text-xs font-mono text-gray-500 dark:text-zinc-400 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
         <span>Rust &bull; C++ &bull; Java 23 &bull; Python &bull; Go &bull; TypeScript</span>
       </div>
     </div>
 
     <!-- Right: Quick Project Index (5 cols - Compact & Clean) -->
-    <div class="lg:col-span-5 bg-[var(--color-brand-bg)] dark:bg-[#0a0a0a] border border-gray-200 dark:border-zinc-800 rounded-[calc(2rem*var(--brm))] corner-squircle p-4 sm:p-5 shadow-sm flex flex-col justify-between text-left">
+    <div class="lg:col-span-5 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[calc(2rem*var(--brm))] corner-squircle p-4 sm:p-5 shadow-sm flex flex-col justify-between text-left">
       <div>
-        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-gray-200 dark:border-zinc-800">
-          <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gray-600 dark:text-zinc-300 font-semibold">
+        <div class="flex items-center justify-between mb-3.5">
+          <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-gray-600 dark:text-zinc-300 font-semibold">
             <span class="material-symbols-rounded text-sm">list_alt</span>
             <span>{locale === 'it' ? 'Indice Rapido Progetti' : 'Quick Project Index'}</span>
           </div>
-          <span class="text-[0.68rem] font-mono text-gray-400 dark:text-zinc-500">
+          <span class="text-xs text-gray-400 dark:text-zinc-500 font-medium">
             {locale === 'it' ? '10 Progetti + Lab' : '10 Projects + Lab'}
           </span>
         </div>
@@ -102,7 +103,7 @@
           {#each projectsIndex as project}
             <a
               href={`#${project.slug}`}
-              class="interactable group py-1.5 sm:py-2 px-3 rounded-[calc(1rem*var(--brm))] corner-squircle bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-gray-400 dark:hover:border-zinc-500 transition-colors duration-200 flex items-center justify-between cursor-pointer block"
+              class="interactable group py-1.5 sm:py-2 px-3 rounded-[calc(1rem*var(--brm))] corner-squircle bg-white dark:bg-black border border-gray-200 dark:border-white/10 hover:border-gray-400 dark:hover:border-white/30 transition-colors duration-200 flex items-center justify-between cursor-pointer block"
               data-type="internal"
               onclick={(e) => { e.preventDefault(); jumpTo(project.slug); }}
             >
@@ -114,7 +115,7 @@
                   <p class="text-xs sm:text-sm font-semibold text-black dark:text-white truncate">
                     {project.name}
                   </p>
-                  <p class="text-[0.68rem] font-mono text-gray-500 dark:text-zinc-400 truncate">
+                  <p class="text-xs text-gray-500 dark:text-zinc-400 truncate">
                     {project.tech}
                   </p>
                 </div>

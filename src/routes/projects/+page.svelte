@@ -61,23 +61,37 @@
   <div class="flex flex-col w-full">
     {#each mainProjects as project, i}
       <section id={project.slug} class="relative lg:snap-start w-full lg:h-[100vh] min-h-screen flex items-center justify-center py-[4rem] lg:py-0 px-[5%] lg:px-[5rem]">
-        <div class="w-full max-w-[90rem] mx-auto flex flex-col {i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-[3rem] lg:gap-[6rem] text-left">
+        <div class="w-full max-w-[90rem] mx-auto flex flex-col {i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-[2rem] lg:gap-[3.5rem] text-left">
           
           <!-- Image -->
-          <div class="w-full md:w-1/2 flex justify-center relative group">
-            <div class="relative w-full aspect-[4/3] overflow-hidden rounded-[calc(2rem*var(--brm))] corner-squircle shadow-2xl">
-              <img src={project.imageLight} alt={project.title} class="w-full h-full object-cover block dark:hidden transition-transform duration-700 group-hover:scale-105" />
-              <img src={project.imageDark} alt={project.title} class="w-full h-full object-cover hidden dark:block transition-transform duration-700 group-hover:scale-105" />
+          <div class="w-full md:w-[55%] lg:w-[57%] shrink-0 flex justify-center relative">
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <div
+              class="interactable cursor-pointer relative w-full aspect-[16/9] overflow-hidden rounded-[calc(1.4rem*var(--brm))] corner-squircle shadow-2xl"
+              data-type="internal"
+              role="button"
+              tabindex="0"
+              onclick={() => selectedProject = project}
+              onkeydown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  selectedProject = project;
+                }
+              }}
+              onmouseenter={() => import(`../../lib/content/projects/${getLocale()}/${project.slug}.svelte`).catch(() => {})}
+            >
+              <img src={project.imageLight} alt={project.title} class="w-full h-full object-cover block dark:hidden pointer-events-none" />
+              <img src={project.imageDark} alt={project.title} class="w-full h-full object-cover hidden dark:block pointer-events-none" />
             </div>
           </div>
           
           <!-- Content -->
-          <div class="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 class="text-[2rem] sm:text-[3rem] font-bold text-black dark:text-white mb-[1.5rem] leading-tight tracking-tight">{project.title}</h2>
+          <div class="w-full md:flex-1 min-w-0 flex flex-col justify-center">
+            <h2 class="text-[2rem] sm:text-[3rem] font-bold text-black dark:text-white mb-[1.25rem] leading-tight tracking-tight">{project.title}</h2>
             
-            <div class="flex flex-wrap gap-[0.75rem] mb-[2rem]">
+            <div class="flex flex-wrap gap-2 mb-5 sm:mb-6">
               {#each project.technologies as tech}
-                <span class="px-[1.2rem] py-[0.4rem] bg-gray-100 dark:bg-[#1a1a1a] text-[0.8rem] tracking-widest uppercase rounded-full text-gray-700 dark:text-gray-300 font-semibold border border-transparent dark:border-gray-700">{tech}</span>
+                <span class="px-3.5 py-1 bg-white dark:bg-black text-[0.75rem] tracking-wider uppercase rounded-full text-gray-700 dark:text-gray-300 font-medium border border-gray-200 dark:border-white/10">{tech}</span>
               {/each}
             </div>
 
@@ -134,7 +148,7 @@
 
     {#if minorProjects.length > 0}
       <!-- Minor Projects Section -->
-      <section id="minor-projects" class="relative lg:snap-start w-full min-h-screen lg:h-screen lg:max-h-screen lg:min-h-0 flex flex-col justify-between pt-6 lg:pt-8 pb-3 lg:pb-4 px-[5%] lg:px-[5rem] box-border bg-gray-50 dark:bg-black lg:overflow-hidden">
+      <section id="minor-projects" class="relative lg:snap-start w-full min-h-screen lg:h-screen lg:max-h-screen lg:min-h-0 flex flex-col justify-between pt-6 lg:pt-8 pb-3 lg:pb-4 px-[5%] lg:px-[5rem] box-border bg-white dark:bg-black lg:overflow-hidden">
         <div class="w-full my-auto">
           <MinorProjects />
         </div>

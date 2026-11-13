@@ -18,6 +18,25 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'omnideps',
+    title: 'Omnideps',
+    imageLight: '/assets/projects/omnideps/cover.jpg',
+    imageDark: '/assets/projects/omnideps/cover.jpg',
+    github: 'https://github.com/FerrarioChristian/omnideps',
+    demo: 'https://omnideps.ferraa.it',
+    technologies: ['Rust', 'Tree-sitter', 'Rayon', 'Axum', 'Cytoscape.js', 'SvelteKit', 'Tailwind CSS'],
+    description: {
+      it: 'Analizzatore architetturale poliglotto ad altissime prestazioni scritto in Rust. Parsing CST multi-thread con Tree-sitter, risoluzione dei simboli cross-file e sintesi di grafi di dipendenza interattivi tramite motore web Cytoscape integrato.',
+      en: 'A high-performance polyglot architectural dependency analyzer written in Rust. Multi-threaded CST parsing with Tree-sitter, cross-file symbol resolution, and dependency graph synthesis with an embedded Cytoscape web engine.'
+    },
+    isFeatured: true,
+    category: 'Compilers & Systems',
+    highlight: {
+      it: 'Analisi Poliglotta & Grafo Unificato in Rust',
+      en: 'Polyglot AST Analysis & Unified Graph in Rust'
+    }
+  },
+  {
     slug: 'sportrack',
     title: 'Sportrack',
     imageLight: '/assets/projects/sportrack/cover.jpg',
@@ -55,8 +74,8 @@ export const projects: Project[] = [
   {
     slug: 'iterative-linear-solver',
     title: 'Sparse Iterative Solvers',
-    imageLight: '/assets/project-wip.jpg',
-    imageDark: '/assets/project-wip-dark.jpg',
+    imageLight: '/assets/projects/iterative-linear-solver/cover-light.jpg',
+    imageDark: '/assets/projects/iterative-linear-solver/cover-dark.jpg',
     github: 'https://github.com/FerrarioChristian/iterative-linear-solver',
     demo: '',
     technologies: ['Python', 'SciPy', 'NumPy', 'Matplotlib', 'Scientific Computing'],
@@ -64,8 +83,12 @@ export const projects: Project[] = [
       it: 'Libreria Python per la risoluzione di sistemi lineari sparsi su larga scala tramite metodi iterativi (Jacobi, Gauss-Seidel, Gradiente Coniugato).',
       en: 'Python library for solving large-scale sparse linear systems using iterative methods (Jacobi, Gauss-Seidel, Conjugate Gradient).'
     },
-    isFeatured: false,
+    isFeatured: true,
     category: 'Scientific Computing',
+    highlight: {
+      it: 'Metodi Iterativi su Matrici Sparse',
+      en: 'Sparse Matrix Iterative Solvers'
+    },
     report: '/reports/iterative-linear-solver.pdf'
   },
   {
@@ -146,7 +169,7 @@ export const projects: Project[] = [
     imageLight: '/assets/project-wip.jpg',
     imageDark: '/assets/project-wip-dark.jpg',
     github: 'https://github.com/FerrarioChristian/snakey2-with-pipeline',
-    demo: '',
+    demo: 'https://snakey.ferraa.it',
     technologies: ['Node.js', 'WebSockets', 'CI/CD', 'GitHub Actions', 'Docker'],
     description: {
       it: 'Snake multiplayer in tempo reale con focus approfondito su pipeline CI/CD automatizzate, test di regressione e deployment su container.',
@@ -191,16 +214,22 @@ export const projects: Project[] = [
   {
     slug: 'machine-learning',
     title: 'Machine Learning Models Evaluation',
-    imageLight: '/assets/project-wip.jpg',
-    imageDark: '/assets/project-wip-dark.jpg',
+    imageLight: '/assets/projects/machine-learning/cover-light.jpg',
+    imageDark: '/assets/projects/machine-learning/cover-dark.jpg',
     github: 'https://github.com/FerrarioChristian/machine-learning',
     demo: '',
-    technologies: ['Python', 'scikit-learn', 'Pandas', 'MLP Neural Networks', 'Decision Trees'],
+    technologies: ['Python', 'scikit-learn', 'Pandas', 'MLP Neural Networks', 'Decision Trees', 'Matplotlib'],
     description: {
-      it: 'Pre-elaborazione dei dati, tuning degli iperparametri e analisi comparativa di modelli predittivi su dataset reali (credito e accademia).',
-      en: 'Data preprocessing, hyperparameter tuning, and comparative analysis of predictive models on multiple datasets.'
+      it: 'Studio scientifico e benchmark comparativo tra Alberi Decisionali (White-Box) e Reti Neurali MLP su due problemi reali: rischio di default creditizio e performance accademica studentesca.',
+      en: 'Scientific benchmark and comparative evaluation of Decision Trees (White-Box) vs MLP Neural Networks across credit card default risk and student academic performance classification.'
     },
-    isFeatured: false
+    isFeatured: false,
+    report: '/reports/machine-learning.pdf',
+    category: 'Data Science & ML',
+    highlight: {
+      it: 'Benchmark Comparativo & Fairness Audit',
+      en: 'Comparative Benchmark & Fairness Audit'
+    }
   },
   {
     slug: 'java-multiplayer-snake',

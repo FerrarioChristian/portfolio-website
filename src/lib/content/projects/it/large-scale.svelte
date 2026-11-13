@@ -8,7 +8,7 @@
     </p>
   </section>
 
-  <section class="bg-gray-50 dark:bg-[#111] rounded-[2rem] p-[4rem] text-center mt-[2rem]">
+  <section class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] p-[4rem] text-center mt-[2rem]">
     <h3 class="text-[2.5rem] font-bold tracking-tight mb-[1.5rem] dark:text-white">Metodologia Kimball & ELT</h3>
     <p class="text-[1.2rem] text-gray-500 dark:text-gray-400 font-light max-w-[40rem] mx-auto leading-relaxed mb-[4rem]">
       La pipeline dati abbandona il tradizionale paradigma ETL in favore dell'approccio ELT orchestrato da <strong>dbt (data build tool)</strong> sul motore colonnare in-process <strong>DuckDB</strong>.
@@ -33,7 +33,7 @@
   </section>
 
   <section class="grid grid-cols-1 md:grid-cols-2 gap-[4rem] items-center px-[5%] lg:px-0">
-    <div class="order-2 md:order-1 bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
+    <div class="order-2 md:order-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center text-[1.2rem]">Star Schema<br/>&<br/>Hash Disambiguation</span>
     </div>
     <div class="order-1 md:order-2">
@@ -63,7 +63,7 @@
         Le dimensioni conformi permettono analisi di <em>Drill-Across</em>, congiungendo il mondo degli acquisti e quello delle vendite, evidenziando trend di redditività, la rotazione di magazzino e il benchmark diretto (opportunità di arbitraggio) contro il competitor leader CEX.
       </p>
     </div>
-    <div class="bg-gray-100 dark:bg-[#1a1a1a] rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
+    <div class="bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[2rem] aspect-[4/5] flex items-center justify-center p-[2rem]">
       <span class="text-gray-400 font-medium text-center">Tableau<br/>Data Visualization</span>
     </div>
   </section>
