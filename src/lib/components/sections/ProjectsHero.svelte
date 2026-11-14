@@ -30,10 +30,10 @@
   <a
     href="/"
     data-sveltekit-preload-data="hover"
-    class="interactable inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-300 hover:underline hover:decoration-gray-300 underline-offset-[0.35rem] transition-colors duration-200"
+    class="group interactable inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-300 transition-colors duration-200"
   >
-    <span class="material-symbols-rounded text-base">arrow_back</span>
-    <span>{locale === 'it' ? 'Torna alla Home' : 'Back to Home'}</span>
+    <span class="material-symbols-rounded text-base transition-transform duration-200 group-hover:-translate-x-1 pointer-events-none">arrow_back</span>
+    <span class="group-hover:underline group-hover:decoration-gray-300 underline-offset-[0.35rem]">{locale === 'it' ? 'Torna alla Home' : 'Back to Home'}</span>
   </a>
 </div>
 
