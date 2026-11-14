@@ -1,10 +1,19 @@
 <script lang="ts">
   import { projects } from '$lib/data/projects';
   import Button from '$lib/components/Button.svelte';
-  import { t } from '$lib/i18n/locale.svelte';
+  import { getLocale, t } from '$lib/i18n/locale.svelte';
 
-  // Selected proudest projects
-  const spotlightSlugs = ['timetrack', 'jpeg-converter', 'sportrack', 'assettocorsa-rpm-led'];
+  let locale = $derived(getLocale());
+
+  // Selected proudest projects (6 Flagships across Systems, Web, Mobile, Embedded & Scientific Computing)
+  const spotlightSlugs = [
+    'omnideps',
+    'timetrack',
+    'jpeg-converter',
+    'sportrack',
+    'assettocorsa-rpm-led',
+    'iterative-linear-solver'
+  ];
   const spotlightProjects = spotlightSlugs
     .map(slug => projects.find(p => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => p !== undefined);
@@ -13,166 +22,162 @@
   let activeProject = $derived(spotlightProjects[activeIndex] || spotlightProjects[0]);
 </script>
 
-<div class="w-full max-w-[100rem] mx-auto flex flex-col justify-between">
-  <!-- Header -->
-  <div class="text-center mb-6 lg:mb-8">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-gray-100 dark:bg-zinc-900 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-zinc-800 mb-2">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      Interactive Spotlight
-    </div>
-    <h2 class="text-[2rem] lg:text-[2.75rem] font-bold text-black dark:text-white tracking-tight">
-      Selected Works
-    </h2>
-    <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-      Esplora interattivamente alcuni dei progetti di cui sono più fiero, passando con il mouse o cliccando.
+<div class="w-full max-w-[92rem] mx-auto flex flex-col justify-between">
+  <!-- Header (Aligned with Site Typography: About & Profile) -->
+  <div class="text-center mb-4 sm:mb-5 lg:mb-6">
+    <p class="font-semibold text-sm sm:text-base text-[var(--color-brand-gray)] dark:text-gray-300 text-center mb-1">
+      {locale === 'it' ? 'I Miei Progetti' : 'Browse My Recent'}
     </p>
+    <h2 class="text-[2rem] sm:text-[2.4rem] lg:text-[2.85rem] font-bold text-center text-black dark:text-white tracking-tight">
+      {locale === 'it' ? 'Progetti in Evidenza' : 'Featured Projects'}
+    </h2>
   </div>
 
-  <!-- Stage Grid -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-    <!-- Left: Interactive Selector List (5 cols) -->
-    <div class="lg:col-span-5 flex flex-col gap-3 justify-center">
+  <!-- Stage Grid (Balanced Golden Ratio & Fixed Dimensions) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+    <!-- Left: Interactive Selector List (5 cols, fixed height matching right card) -->
+    <div class="lg:col-span-5 flex flex-col justify-between gap-2 sm:gap-2.5 lg:h-[510px]">
       {#each spotlightProjects as project, idx}
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
         <div
-          class="interactable text-left p-4 lg:p-5 rounded-[calc(1.5rem*var(--brm))] corner-squircle border transition-all duration-300 cursor-pointer relative overflow-hidden group
+          class="interactable text-left px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-[calc(1.2rem*var(--brm))] corner-squircle border transition-colors duration-200 cursor-pointer flex items-center justify-between gap-3 flex-1
             {activeIndex === idx
-              ? 'bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-lg scale-[1.01]'
-              : 'bg-white dark:bg-[#0a0a0a] text-black dark:text-white border-gray-200 dark:border-zinc-800 hover:border-gray-400 dark:hover:border-zinc-600 hover:bg-gray-50 dark:hover:bg-zinc-900/50'}"
+              ? 'bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-md'
+              : 'bg-white dark:bg-black text-black dark:text-white border-gray-200 dark:border-white/10 hover:border-gray-400 dark:hover:border-white/30'}"
           data-type="action"
           onclick={() => activeIndex = idx}
           onmouseenter={() => activeIndex = idx}
         >
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <span class="font-mono text-xs tracking-widest opacity-60">
-                0{idx + 1}
-              </span>
-              <div>
-                <h3 class="font-bold text-base lg:text-lg tracking-tight">
-                  {project.title}
-                </h3>
-                <p class="text-xs tracking-wide opacity-75 mt-0.5">
-                  {project.category || 'Software Engineering'}
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-1">
-              <span class="material-symbols-rounded text-lg transition-transform duration-300 group-hover:translate-x-1">
-                arrow_forward
-              </span>
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded-[calc(0.45rem*var(--brm))] corner-squircle shrink-0
+              {activeIndex === idx
+                ? 'bg-white/20 dark:bg-black/20 text-white dark:text-black'
+                : 'bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-gray-600 dark:text-zinc-400'}">
+              0{idx + 1}
+            </span>
+            <div class="truncate">
+              <h3 class="font-bold text-sm sm:text-[0.95rem] tracking-tight truncate leading-tight">
+                {project.title}
+              </h3>
+              <p class="text-xs opacity-75 font-mono truncate mt-0.5">
+                {project.category || 'Software Engineering'}
+              </p>
             </div>
           </div>
 
-          <!-- Mini tags row in active card -->
-          <div class="flex flex-wrap gap-1.5 mt-3 pt-3 border-t {activeIndex === idx ? 'border-white/20 dark:border-black/20' : 'border-gray-100 dark:border-zinc-800/80'}">
-            {#each project.technologies.slice(0, 3) as tech}
-              <span class="text-[0.68rem] px-2 py-0.5 rounded-full {activeIndex === idx ? 'bg-white/15 dark:bg-black/15' : 'bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-300'} font-medium">
-                {tech}
-              </span>
-            {/each}
-          </div>
+          <span class="material-symbols-rounded text-base shrink-0 {activeIndex === idx ? 'opacity-100' : 'opacity-40'}">
+            chevron_right
+          </span>
         </div>
       {/each}
     </div>
 
-    <!-- Right: Spotlight Preview Card (7 cols) -->
-    <div class="lg:col-span-7 flex flex-col">
-      <div class="h-full bg-[var(--color-brand-bg)] dark:bg-[#080808] border border-gray-200 dark:border-zinc-800 rounded-[calc(2rem*var(--brm))] corner-squircle p-5 sm:p-7 flex flex-col justify-between shadow-xl transition-all duration-500">
-        <!-- Visual Cover -->
-        <div class="relative w-full aspect-[16/9] overflow-hidden rounded-[calc(1.5rem*var(--brm))] corner-squircle mb-5 group bg-gray-200 dark:bg-zinc-900">
-          <img
-            src={activeProject.imageLight}
-            alt={activeProject.title}
-            class="w-full h-full object-cover block dark:hidden transition-transform duration-700 group-hover:scale-105"
-          />
-          <img
-            src={activeProject.imageDark}
-            alt={activeProject.title}
-            class="w-full h-full object-cover hidden dark:block transition-transform duration-700 group-hover:scale-105"
-          />
+    <!-- Right: Spotlight Preview Card (7 cols - Fixed Height, Rock-Solid Layout) -->
+    <div class="lg:col-span-7 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[calc(1.8rem*var(--brm))] corner-squircle p-5 sm:p-6 lg:p-7 flex flex-col justify-between shadow-sm text-left h-[480px] sm:h-[500px] lg:h-[510px] shrink-0">
+      <!-- Visual Cover (Fixed Height) -->
+      <div class="relative w-full h-[180px] sm:h-[195px] lg:h-[200px] overflow-hidden rounded-[calc(1.3rem*var(--brm))] corner-squircle mb-4 sm:mb-4.5 bg-gray-200 dark:bg-black border border-transparent dark:border-white/10 shrink-0">
+        <img
+          src={activeProject.imageLight}
+          alt={activeProject.title}
+          class="w-full h-full object-cover block dark:hidden"
+        />
+        <img
+          src={activeProject.imageDark}
+          alt={activeProject.title}
+          class="w-full h-full object-cover hidden dark:block"
+        />
 
-          <!-- Gradient overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-50"></div>
 
-          <!-- Highlight Pill on image -->
-          {#if activeProject.highlight}
-            <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md text-white text-[0.75rem] font-medium px-3 py-1 rounded-full border border-white/20">
-              {t(activeProject.highlight)}
-            </div>
-          {/if}
-        </div>
+        <!-- Highlight Pill on image -->
+        {#if activeProject.highlight}
+          <div class="absolute bottom-3 left-3 bg-black/75 backdrop-blur-md text-white text-xs font-medium px-3 py-1 rounded-full border border-white/20">
+            {t(activeProject.highlight)}
+          </div>
+        {/if}
+      </div>
 
-        <!-- Project Meta & Description -->
-        <div class="flex-grow flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-4 mb-2">
-              <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-black dark:text-white tracking-tight">
-                {activeProject.title}
-              </h3>
-              <span class="text-xs uppercase font-mono tracking-wider px-2.5 py-1 rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-zinc-700">
-                {activeProject.category || 'Featured'}
-              </span>
-            </div>
+      <!-- Project Meta & Description (Fixed Heights for Absolute Stability, Borderless Hierarchy) -->
+      <div class="flex-1 min-h-0 flex flex-col justify-between">
+        <div>
+          <!-- Title row with category badge -->
+          <div class="flex items-center justify-between gap-3 mb-2 sm:mb-2.5 shrink-0">
+            <h3 class="text-xl sm:text-2xl font-bold text-black dark:text-white tracking-tight leading-snug truncate">
+              {activeProject.title}
+            </h3>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium shrink-0 tracking-wide uppercase">
+              {activeProject.category || 'Featured'}
+            </span>
+          </div>
 
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed font-light mb-4 line-clamp-2">
+          <!-- Description paragraph with fixed height container to prevent layout shift -->
+          <div class="h-[3.6rem] sm:h-[3.9rem] overflow-hidden mb-3.5 sm:mb-4">
+            <p class="text-sm sm:text-[0.95rem] text-gray-600 dark:text-gray-300 leading-relaxed font-light line-clamp-2 sm:line-clamp-3">
               {t(activeProject.description)}
             </p>
-
-            <!-- Tech Pills -->
-            <div class="flex flex-wrap gap-1.5 mb-6">
-              {#each activeProject.technologies as tech}
-                <span class="px-2.5 py-1 text-xs rounded-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-gray-300 font-medium">
-                  {tech}
-                </span>
-              {/each}
-            </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-gray-200 dark:border-zinc-800">
-            <Button
-              variant="filled"
-              padding="py-2.5 px-5"
-              href={`/projects?scrollTo=${activeProject.slug}`}
-              data-sveltekit-preload-data="hover"
-              class="text-sm"
-            >
-              Case Study & Details
-            </Button>
-
-            <Button
-              variant="outline"
-              padding="py-2.5 px-5"
-              href={activeProject.github}
-              target="_blank"
-              class="text-sm"
-            >
-              GitHub Source
-            </Button>
-
-            {#if activeProject.report}
-              <Button
-                variant="text-icon"
-                icon="description"
-                href={activeProject.report}
-                target="_blank"
-                class="text-xs ml-auto"
+          <!-- Tech Pills (Strict Single Row, Fixed Height) -->
+          <div class="flex items-center gap-1.5 h-[1.85rem] mb-4 sm:mb-5 overflow-hidden flex-nowrap shrink-0">
+            {#each activeProject.technologies.slice(0, 4) as tech}
+              <span class="px-2.5 py-1 text-xs font-mono rounded-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 shrink-0 whitespace-nowrap">
+                {tech}
+              </span>
+            {/each}
+            {#if activeProject.technologies.length > 4}
+              <span
+                class="px-2 py-1 text-xs font-mono rounded-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-gray-500 dark:text-zinc-400 shrink-0 whitespace-nowrap"
+                title={activeProject.technologies.slice(4).join(', ')}
               >
-                Report PDF
-              </Button>
+                +{activeProject.technologies.length - 4}
+              </span>
             {/if}
           </div>
+        </div>
+
+        <!-- Action Buttons (Pinned to bottom of card, separated purely by whitespace) -->
+        <div class="flex flex-wrap items-center gap-2.5 pt-2 shrink-0">
+          <Button
+            variant="filled"
+            padding="py-2 px-4"
+            href={`/projects?scrollTo=${activeProject.slug}`}
+            data-sveltekit-preload-data="hover"
+            class="text-xs sm:text-sm font-medium"
+          >
+            {locale === 'it' ? 'Esplora Case Study' : 'View Case Study'}
+          </Button>
+
+          <Button
+            variant="outline"
+            padding="py-2 px-4"
+            href={activeProject.github}
+            target="_blank"
+            class="text-xs sm:text-sm font-medium"
+          >
+            GitHub
+          </Button>
+
+          {#if activeProject.report}
+            <Button
+              variant="outline"
+              padding="py-2 px-3.5"
+              href={activeProject.report}
+              target="_blank"
+              class="text-xs sm:text-sm font-medium ml-auto"
+            >
+              Report PDF
+            </Button>
+          {/if}
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Archive Teaser -->
-  <div class="mt-8 pt-5 border-t border-gray-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-    <div class="flex items-center gap-3">
+  <!-- Bottom Archive Teaser (No separating line, emphasized CTA button) -->
+  <div class="mt-4 sm:mt-5 lg:mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div class="flex items-center gap-2.5">
       <div class="flex -space-x-1">
         <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
@@ -180,18 +185,21 @@
         <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
       </div>
       <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-        <strong class="text-black dark:text-white font-semibold">17 Progetti in totale</strong> — Sistemi Low-level, Mobile AI, Web Full-Stack e Calcolo Scientifico.
+        <strong class="text-black dark:text-white font-medium">{locale === 'it' ? `${projects.length} Progetti in totale` : `${projects.length} Total Projects`}</strong> — {locale === 'it' ? 'Sistemi Low-level, Mobile, Web e Calcolo Scientifico.' : 'Low-level systems, Mobile, Web, and Scientific Computing.'}
       </p>
     </div>
 
     <Button
-      variant="outline"
-      padding="py-2 px-5"
+      variant="filled"
+      padding="py-2.5 px-5 sm:px-6"
       href="/projects"
       data-sveltekit-preload-data="hover"
-      class="text-xs sm:text-sm"
+      class="text-xs sm:text-sm font-semibold shadow-md shrink-0"
     >
-      Visualizza Archivio Completo &rarr;
+      <span class="flex items-center gap-2">
+        <span>{locale === 'it' ? 'Visualizza Tutti i Progetti' : 'View All Projects'}</span>
+        <span class="material-symbols-rounded text-base">arrow_forward</span>
+      </span>
     </Button>
   </div>
 </div>

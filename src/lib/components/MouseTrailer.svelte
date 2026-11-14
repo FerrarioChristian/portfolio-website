@@ -14,10 +14,11 @@
 
     // Helper to determine the interaction category:
     // 'external': external links, github, linkedin, mailto, reports (displays oblique arrow)
+    // 'inspect': timeline degrees, deep-dive examination (displays magnifying glass)
     // 'internal': page navigations, anchor jumps, opening project dialogs (expands without arrow)
     // 'action': toggles (theme, lang), buttons, filters, sliders, controls (expands without arrow)
     // null: standard non-interactive area
-    const getInteractionType = (target: Element | null): 'external' | 'internal' | 'action' | null => {
+    const getInteractionType = (target: Element | null): 'external' | 'internal' | 'action' | 'inspect' | null => {
       if (!target) return null;
 
       const el = target.closest(
@@ -27,6 +28,7 @@
 
       // 1. Explicit data-type attribute on the element or an ancestor
       const explicitType = (el.closest('[data-type]') as HTMLElement | null)?.dataset.type;
+      if (explicitType === 'inspect') return 'inspect';
       if (explicitType === 'external') return 'external';
       if (explicitType === 'internal') return 'internal';
       if (explicitType === 'action') return 'action';
@@ -140,7 +142,8 @@
 </script>
 
 <div bind:this={cursor} class="cursor hidden sm:flex">
-  <span class="material-symbols-rounded cursor-icon select-none pointer-events-none">north_east</span>
+  <span class="material-symbols-rounded cursor-icon cursor-icon-arrow select-none pointer-events-none">north_east</span>
+  <span class="material-symbols-rounded cursor-icon cursor-icon-search select-none pointer-events-none">search</span>
 </div>
 
 <style>
@@ -182,7 +185,17 @@
     height: 30px !important;
   }
 
-  /* Case 2: Internal Links & Dialog open (No arrow, smooth expansion) */
+  /* Case 2: Inspect / Zoom Lens (Magnifying glass visible for degree timeline) */
+  :global(.cursor[data-type="inspect"]) {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  :global(.cursor[data-type="inspect"].expand) {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  /* Case 3: Internal Links & Dialog open (No arrow, smooth expansion) */
   :global(.cursor[data-type="internal"]) {
     width: 34px !important;
     height: 34px !important;
@@ -192,7 +205,7 @@
     height: 26px !important;
   }
 
-  /* Case 3: Action Controls, Toggles, Buttons (No arrow, compact tactile expansion) */
+  /* Case 4: Action Controls, Toggles, Buttons (No arrow, compact tactile expansion) */
   :global(.cursor[data-type="action"]) {
     width: 30px !important;
     height: 30px !important;
@@ -208,22 +221,43 @@
     height: 36px !important;
   }
   
-  /* Oblique Arrow Icon - ONLY shown when hovering external links */
+  /* Icons inside the cursor trailer */
   .cursor-icon {
+    position: absolute;
     color: #000;
-    font-size: 1.35rem;
-    line-height: 1.35rem;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
     font-weight: 500;
     opacity: 0;
-    transform: scale(0.3) rotate(-15deg);
+    transform: scale(0.3);
     transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
     user-select: none;
   }
-  
-  :global(.cursor[data-type="external"] .cursor-icon) {
+
+  .cursor-icon-arrow {
+    transform: scale(0.3) rotate(-15deg);
+  }
+
+  :global(.cursor[data-type="external"] .cursor-icon-arrow) {
     opacity: 1 !important;
     transform: scale(1) rotate(0deg) !important;
+  }
+
+  :global(.cursor[data-type="inspect"] .cursor-icon-search) {
+    opacity: 1 !important;
+    transform: scale(1) rotate(0deg) !important;
+  }
+
+  /* Slower, smoother expansion on entry for all interactive states */
+  :global(.cursor[data-type]) {
+    transition: width 0.36s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :global(.cursor[data-type] .cursor-icon) {
+    transition: opacity 0.30s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.30s cubic-bezier(0.16, 1, 0.3, 1);
   }
 </style>

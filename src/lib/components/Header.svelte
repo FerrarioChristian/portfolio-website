@@ -58,7 +58,7 @@
       <span class="w-full h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out {isMenuOpen ? 'opacity-0' : 'opacity-100'}"></span>
       <span class="w-full h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out {isMenuOpen ? '-rotate-45 -translate-y-[11px]' : ''}"></span>
     </button>
-    <div class="absolute top-full right-0 bg-white dark:bg-[#1a1a1a] w-max overflow-hidden transition-all duration-300 ease-in-out {isMenuOpen ? 'max-h-[300px]' : 'max-h-0'}">
+    <div class="absolute top-full right-0 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl w-max overflow-hidden transition-all duration-300 ease-in-out {isMenuOpen ? 'max-h-[300px]' : 'max-h-0'}">
       <ul class="list-none p-0 m-0">
         <li><a data-sveltekit-preload-data="hover" href="/#about" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">About</a></li>
         <li><a data-sveltekit-preload-data="hover" href="/#experience" onclick={toggleMenu} class="block p-[10px] text-center text-[1.5rem] text-black dark:text-white no-underline transition-all duration-300 hover:text-gray-500 dark:hover:text-gray-300">Experience</a></li>

@@ -15,7 +15,7 @@
 <button
   type="button"
   data-type="action"
-  class="interactable relative inline-flex items-center p-0.5 rounded-full bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 select-none transition-all duration-300 hover:border-gray-400 dark:hover:border-zinc-600 {className}"
+  class="interactable relative inline-flex items-center p-0.5 rounded-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 select-none transition-all duration-300 hover:border-gray-400 dark:hover:border-white/30 {className}"
   onclick={toggleLocale}
   aria-label={`Current language: ${locale.toUpperCase()}. Click to switch to ${locale === 'it' ? 'EN' : 'IT'}`}
   title={`Switch to ${locale === 'it' ? 'English' : 'Italiano'}`}

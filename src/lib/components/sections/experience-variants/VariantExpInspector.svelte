@@ -10,66 +10,66 @@
       name: 'Rust',
       category: 'Systems & Embedded',
       role: 'Telemetry Client & Shared Memory',
-      why: 'Scelto per la massima garanzia di memory-safety e latenze minime nella lettura della memoria condivisa da simulatori di guida.',
+      why: 'Volevo uno strumento veloce e sicuro per leggere i dati di gioco in tempo reale senza rallentare il simulatore. Con Rust sono riuscito a mappare direttamente la memoria condivisa di Windows senza allocazioni inutili a runtime.',
       project: 'Assetto Corsa RPM LEDs',
       slug: 'assettocorsa-rpm-led',
       techs: ['ESP32', 'WLED', 'UDP Sockets', 'Shared Memory'],
-      metric: '0 allocazioni a runtime nel loop di telemetria a 60Hz'
+      metric: 'Loop a 60 Hz stabile con zero allocazioni dinamiche a runtime'
     },
     {
       id: 'spring',
       name: 'Spring Boot 3 & Java 23',
-      category: 'Backend Architecture',
-      role: 'RESTful API, Security & Persistence',
-      why: 'Impiegato per realizzare una piattaforma web full-stack complessa, con autenticazione basata su sessioni, Spring Data JPA e template engine modulare.',
+      category: 'Backend & Database',
+      role: 'Web Backend, Auth & Database',
+      why: 'L\'ho usato per costruire un\'applicazione gestionale completa. Mi è servito per capire come strutturare un backend serio: gestione delle sessioni, sicurezza contro attacchi comuni e un modello dati relazionale pulito con PostgreSQL.',
       project: 'TimeTrack',
       slug: 'timetrack',
       techs: ['Java 23', 'Spring Security', 'PostgreSQL', 'Thymeleaf', 'Tailwind'],
-      metric: 'Architettura a 3 layer (Controller, Service, Repository)'
+      metric: 'Codice ben organizzato a livelli (Controller, Service e Repository)'
     },
     {
       id: 'python',
       name: 'Python & NumPy / SciPy',
-      category: 'Scientific Computing',
-      role: 'Calcolo Matriciale & 2D DCT',
-      why: 'Utilizzato per implementare la Discrete Cosine Transform bidimensionale da zero, stima dell\'entropia di Huffman e quantizzazione matriciale.',
+      category: 'Scientific & Numerical',
+      role: 'Matematica applicata & Compressione immagini',
+      why: 'Volevo capire davvero come funziona la compressione JPEG dietro le quinte. Invece di usare librerie già pronte, ho riscritto la DCT 2D e la quantizzazione da zero con NumPy per analizzare la perdita di qualità e il rate di compressione.',
       project: 'DCT Image Compressor',
       slug: 'jpeg-converter',
       techs: ['NumPy', 'SciPy', 'CustomTkinter', 'PSNR / MSE'],
-      metric: 'Simulazione fedele dello standard JPEG con metriche in tempo reale'
+      metric: 'Pipeline JPEG completa da zero con calcolo di errore PSNR/MSE'
     },
     {
       id: 'cpp',
       name: 'C++ & ESP8266 / Qt',
       category: 'Systems & Algorithms',
-      role: 'Firmware Microcontrollori & GUI Desktop',
-      why: 'Impiegato sia su microcontrollori per il campionamento sensori a basso consumo, sia per applicazioni desktop con algoritmo di Backtracking DFS.',
+      role: 'Microcontrollori IoT & Algoritmi desktop',
+      why: 'È il linguaggio con cui ho iniziato ad amare la programmazione a basso livello. L\'ho usato per programmare sensori su ESP8266 ottimizzando il sonno profondo (deep sleep), e per sviluppare un risolutore di Sudoku con interfaccia Qt.',
       project: 'Smart Museum Case',
       slug: 'iot-lab-course',
       techs: ['ESP8266', 'MQTT', 'InfluxDB', 'WoT', 'Telegram API'],
-      metric: 'Autonomia energetica ottimizzata e gestione interrupt hardware'
+      metric: 'Consumo energetico ridotto su batteria e gestione interrupt hardware'
     },
     {
       id: 'svelte',
       name: 'SvelteKit & Tailwind CSS',
-      category: 'Frontend Engineering',
-      role: 'Interfacce Reattive & Design System',
-      why: 'Scelto per la sua assenza di Virtual DOM, la nuova reattività dei Runes di Svelte 5 e la capacità di creare esperienze utente fluide con angoli squircle personalizzati.',
+      category: 'Frontend & Web',
+      role: 'Sviluppo interfaccia & User Experience',
+      why: 'Ho scelto SvelteKit per questo portfolio perché adoro la sua semplicità e la nuova reattività di Svelte 5. Mi ha permesso di curare animazioni, dettagli visivi e curve morbide senza dover caricare bundle enormi.',
       project: 'Portfolio Website',
       slug: 'portfolio-website',
       techs: ['Svelte 5', 'Tailwind v4', 'TypeScript', 'Vite'],
-      metric: 'Lighthouse score 100/100 per performance e accessibilità'
+      metric: 'Interfaccia scattante, caricamento istantaneo e 100/100 Lighthouse'
     },
     {
       id: 'duckdb',
       name: 'DuckDB & dbt',
       category: 'Data Engineering',
-      role: 'ELT Pipeline & Data Warehouse',
-      why: 'Progettazione di uno Star Schema per l\'analisi delle vendite e-commerce multi-canale, con trasformazioni dbt e testing dei dati.',
+      role: 'Data Warehouse & Pipeline ELT',
+      why: 'Durante il corso di Big Data volevo sperimentare un approccio moderno alle pipeline analitiche. Ho modellato i dati di vendita con uno schema a stella su DuckDB, usando dbt per trasformarli e testare la qualità dei dati.',
       project: 'E-Commerce Data Warehouse',
       slug: 'large-scale',
       techs: ['DuckDB', 'dbt', 'SQL', 'PostgreSQL', 'Tableau'],
-      metric: 'Modello analitico multidimensionale con tabelle di fatti e dimensioni'
+      metric: 'Pipeline ELT completa con dati testati e dashboard interattiva'
     }
   ] : [
     {
@@ -77,66 +77,66 @@
       name: 'Rust',
       category: 'Systems & Embedded',
       role: 'Telemetry Client & Shared Memory',
-      why: 'Chosen for guaranteed memory safety and deterministic sub-millisecond latencies when polling shared memory from racing simulators.',
+      why: 'I wanted a fast, safe tool to read real-time game data without slowing down the simulator. Rust let me map Windows shared memory directly, avoiding unnecessary allocations and memory leaks.',
       project: 'Assetto Corsa RPM LEDs',
       slug: 'assettocorsa-rpm-led',
       techs: ['ESP32', 'WLED', 'UDP Sockets', 'Shared Memory'],
-      metric: '0 runtime allocations within the 60Hz telemetry polling loop'
+      metric: 'Stable 60Hz loop with zero dynamic runtime allocations'
     },
     {
       id: 'spring',
       name: 'Spring Boot 3 & Java 23',
-      category: 'Backend Architecture',
-      role: 'RESTful API, Security & Persistence',
-      why: 'Leveraged to engineer an enterprise-grade full-stack platform featuring session-based authentication, Spring Data JPA, and modular templating.',
+      category: 'Backend & Database',
+      role: 'Web Backend, Auth & Database',
+      why: 'Used to build a complete management web app. It helped me learn how to structure a solid backend: session management, standard web security, and clean relational data modeling with PostgreSQL.',
       project: 'TimeTrack',
       slug: 'timetrack',
       techs: ['Java 23', 'Spring Security', 'PostgreSQL', 'Thymeleaf', 'Tailwind'],
-      metric: 'Strict 3-tier architecture (Controller, Service, Repository)'
+      metric: 'Clean layered structure across Controller, Service, and Repository'
     },
     {
       id: 'python',
       name: 'Python & NumPy / SciPy',
-      category: 'Scientific Computing',
-      role: 'Matrix Computing & 2D DCT',
-      why: 'Utilized to build the 2D Discrete Cosine Transform from first mathematical principles, alongside Huffman entropy modeling and quantization.',
+      category: 'Scientific & Numerical',
+      role: 'Applied Math & Image Compression',
+      why: 'I wanted to understand how JPEG compression actually works under the hood. Instead of using black-box libraries, I wrote the 2D DCT and quantization from scratch with NumPy to analyze image quality tradeoffs.',
       project: 'DCT Image Compressor',
       slug: 'jpeg-converter',
       techs: ['NumPy', 'SciPy', 'CustomTkinter', 'PSNR / MSE'],
-      metric: 'Faithful JPEG standard simulation with real-time PSNR/MSE metrics'
+      metric: 'Full JPEG pipeline from scratch with real-time PSNR/MSE error tracking'
     },
     {
       id: 'cpp',
       name: 'C++ & ESP8266 / Qt',
       category: 'Systems & Algorithms',
-      role: 'MCU Firmware & Desktop GUI',
-      why: 'Employed both on microcontrollers for low-power sensor sampling and on desktop GUI tools exploring animated DFS Backtracking trees.',
+      role: 'IoT Microcontrollers & Desktop Tools',
+      why: 'The language where I first developed my passion for systems programming. I used it on ESP8266 boards with deep-sleep power management, and to build a graphical Sudoku solver in Qt.',
       project: 'Smart Museum Case',
       slug: 'iot-lab-course',
       techs: ['ESP8266', 'MQTT', 'InfluxDB', 'WoT', 'Telegram API'],
-      metric: 'Optimized energy profile and hardware interrupt service routines'
+      metric: 'Low-power battery profile with hardware interrupt handling'
     },
     {
       id: 'svelte',
       name: 'SvelteKit & Tailwind CSS',
-      category: 'Frontend Engineering',
-      role: 'Reactive Interfaces & Design Systems',
-      why: 'Selected for its zero Virtual DOM overhead, Svelte 5 Runes fine-grained reactivity, and smooth UX styling with custom squircles.',
+      category: 'Frontend & Web',
+      role: 'UI Engineering & User Experience',
+      why: 'I picked SvelteKit for this portfolio because I love its simplicity and Svelte 5\'s new reactivity. It gave me full control over animations, custom squircles, and visual details without loading a massive JavaScript bundle.',
       project: 'Portfolio Website',
       slug: 'portfolio-website',
       techs: ['Svelte 5', 'Tailwind v4', 'TypeScript', 'Vite'],
-      metric: '100/100 Lighthouse audit score for performance and accessibility'
+      metric: 'Instant loading, fluid transitions, and a 100/100 Lighthouse score'
     },
     {
       id: 'duckdb',
       name: 'DuckDB & dbt',
       category: 'Data Engineering',
-      role: 'ELT Pipeline & Data Warehouse',
-      why: 'Designing a dimensional Star Schema for multi-channel e-commerce sales analytics, featuring dbt data transformation and testing.',
+      role: 'Data Warehouse & Analytical Pipeline',
+      why: 'Built during my Big Data coursework to explore modern analytical pipelines. I modeled multi-channel sales data into a star schema on DuckDB, using dbt to transform and validate the datasets.',
       project: 'E-Commerce Data Warehouse',
       slug: 'large-scale',
       techs: ['DuckDB', 'dbt', 'SQL', 'PostgreSQL', 'Tableau'],
-      metric: 'Multidimensional analytical schema with conformed dimensions'
+      metric: 'Complete ELT pipeline with automated tests and visual dashboard'
     }
   ]);
 
@@ -144,52 +144,47 @@
   let activeItem = $derived(inspectorData.find(d => d.id === selectedId) || inspectorData[0]);
 </script>
 
-<div class="w-full max-w-[100rem] mx-auto flex flex-col justify-between">
-  <!-- Header (Compact) -->
-  <div class="text-center mb-3 sm:mb-4">
-    <p class="text-xs uppercase tracking-widest font-mono text-gray-400 dark:text-zinc-500 mb-1">
-      {locale === 'it' ? 'ESPERIENZA & TECNOLOGIE' : 'EXPERIENCE & TECHNOLOGIES'}
+<div class="w-full max-w-[90rem] mx-auto flex flex-col justify-between">
+  <!-- Header (Aligned with Site Typography) -->
+  <div class="text-center mb-4 sm:mb-5 lg:mb-6">
+    <p class="font-semibold text-sm sm:text-base text-[var(--color-brand-gray)] dark:text-gray-300 text-center mb-1">
+      {locale === 'it' ? 'Competenze & Tecnologie' : 'Skills & Technologies'}
     </p>
-    <h2 class="text-2xl sm:text-3xl lg:text-[2.2rem] font-bold text-black dark:text-white tracking-tight mb-1">
-      Tech Stack Inspector
+    <h2 class="text-[2rem] sm:text-[2.4rem] lg:text-[2.85rem] font-bold text-center text-black dark:text-white tracking-tight">
+      {locale === 'it' ? 'Come Uso le Tecnologie' : 'Tech Stack Inspector'}
     </h2>
-    <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-      {locale === 'it'
-        ? 'Seleziona una tecnologia a sinistra per ispezionare il motivo della scelta architetturale e il progetto in cui è applicata.'
-        : 'Select a technology on the left to inspect the architectural rationale and its practical implementation.'}
-    </p>
   </div>
 
-  <!-- Inspector Layout (Compact) -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+  <!-- Inspector Layout (Relaxed Proportions) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
     <!-- Left: Technology Selector (5 cols) -->
-    <div class="lg:col-span-5 flex flex-col gap-1.5 sm:gap-2 justify-center">
+    <div class="lg:col-span-5 flex flex-col gap-2.5 sm:gap-3 justify-center">
       {#each inspectorData as item}
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <!-- svelte-ignore a11y_no_static_element_interactions -->
         <div
-          class="interactable p-2.5 sm:p-3 rounded-[calc(1.1rem*var(--brm))] corner-squircle border transition-colors duration-200 cursor-pointer flex items-center justify-between gap-2.5
+          class="interactable p-3 sm:p-3.5 lg:p-4 rounded-[calc(1.25rem*var(--brm))] corner-squircle border transition-colors duration-200 cursor-pointer flex items-center justify-between gap-3 text-left
             {selectedId === item.id
-              ? 'bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-sm'
-              : 'bg-white dark:bg-[#080808] text-black dark:text-white border-gray-200 dark:border-zinc-800 hover:border-gray-400 dark:hover:border-zinc-600'}"
+              ? 'bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-md'
+              : 'bg-white dark:bg-black text-black dark:text-white border-gray-200 dark:border-white/10 hover:border-gray-400 dark:hover:border-white/30'}"
           data-type="action"
           onclick={() => selectedId = item.id}
           onmouseenter={() => selectedId = item.id}
         >
-          <div>
-            <h4 class="font-bold text-xs sm:text-sm tracking-tight">
+          <div class="truncate">
+            <h4 class="font-bold text-sm sm:text-base tracking-tight truncate leading-tight">
               {item.name}
             </h4>
-            <p class="text-[0.68rem] opacity-70 mt-0.5 font-mono">
+            <p class="text-xs opacity-75 mt-0.5 truncate font-normal">
               {item.category}
             </p>
           </div>
 
-          <div class="flex items-center gap-2">
-            <span class="text-[0.68rem] opacity-60 font-mono hidden sm:inline truncate max-w-[8rem]">
+          <div class="flex items-center gap-2.5 shrink-0">
+            <span class="text-xs opacity-60 hidden sm:inline truncate max-w-[8.5rem] font-normal">
               {item.project}
             </span>
-            <span class="material-symbols-rounded text-sm opacity-50">
+            <span class="material-symbols-rounded text-base {selectedId === item.id ? 'opacity-100' : 'opacity-40'}">
               chevron_right
             </span>
           </div>
@@ -197,53 +192,52 @@
       {/each}
     </div>
 
-    <!-- Right: Detailed Spec Panel (7 cols) -->
-    <div class="lg:col-span-7 bg-[var(--color-brand-bg)] dark:bg-[#0a0a0a] border border-gray-200 dark:border-zinc-800 rounded-[calc(1.5rem*var(--brm))] corner-squircle p-4 sm:p-5 flex flex-col justify-between shadow-sm text-left">
+    <!-- Right: Detailed Spec Panel (7 cols - Relaxed & Aligned) -->
+    <div class="lg:col-span-7 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[calc(1.8rem*var(--brm))] corner-squircle p-5 sm:p-6 flex flex-col justify-between shadow-sm text-left">
       <div>
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-gray-200 dark:border-zinc-800 mb-3">
-          <div>
-            <span class="text-[0.68rem] font-mono text-gray-400 dark:text-zinc-500 uppercase tracking-wider block">
-              {activeItem.category}
-            </span>
-            <h3 class="text-lg sm:text-xl font-bold text-black dark:text-white tracking-tight">
+        <!-- Tech Header (No top-right chip, cohesive typography) -->
+        <div class="mb-5">
+          <div class="flex items-baseline justify-between gap-3 mb-1">
+            <h3 class="text-xl sm:text-2xl font-bold text-black dark:text-white tracking-tight leading-snug">
               {activeItem.name}
             </h3>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium shrink-0">
+              {activeItem.category}
+            </span>
           </div>
-
-          <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-zinc-700">
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-normal">
             {activeItem.role}
-          </span>
+          </p>
         </div>
 
-        <!-- Architectural Rationale -->
-        <div class="mb-3">
-          <h4 class="text-[0.7rem] font-mono uppercase tracking-wider text-gray-400 dark:text-zinc-500 mb-1">
-            {locale === 'it' ? 'Motivazione della scelta architetturale:' : 'Architectural choice rationale:'}
+        <!-- Why I used it (No matryoshka card, clean typography) -->
+        <div class="mb-5">
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-zinc-500 mb-1.5">
+            {locale === 'it' ? 'Perché l\'ho usato e cosa ci ho fatto' : 'Why I used it & what I built'}
           </h4>
-          <p class="text-xs sm:text-[0.85rem] text-gray-700 dark:text-gray-300 font-light leading-relaxed bg-white/70 dark:bg-black/40 border border-gray-200 dark:border-zinc-800/80 rounded-[calc(0.9rem*var(--brm))] corner-squircle p-2.5 sm:p-3">
+          <p class="text-sm sm:text-[0.95rem] text-gray-800 dark:text-gray-200 leading-relaxed font-normal">
             {activeItem.why}
           </p>
         </div>
 
-        <!-- Key Metric / Milestone -->
-        <div class="mb-3 p-2.5 sm:p-3 rounded-[calc(0.9rem*var(--brm))] corner-squircle bg-white dark:bg-[#080808] border border-gray-200 dark:border-zinc-800">
-          <div class="flex items-center gap-1.5 text-[0.68rem] font-mono uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">
-            <span class="material-symbols-rounded text-sm">verified</span>
-            <span>{locale === 'it' ? 'Metrica / Risultato Chiave' : 'Key Metric / Benchmark'}</span>
-          </div>
-          <p class="text-xs sm:text-sm font-semibold text-black dark:text-white">
+        <!-- Key Highlight (No bordered sub-card) -->
+        <div class="mb-5">
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-zinc-500 mb-1">
+            {locale === 'it' ? 'Aspetto chiave del progetto' : 'Key technical highlight'}
+          </h4>
+          <p class="text-sm sm:text-[0.95rem] font-medium text-black dark:text-white">
             {activeItem.metric}
           </p>
         </div>
 
         <!-- Techs involved -->
         <div>
-          <h4 class="text-[0.7rem] font-mono uppercase tracking-wider text-gray-400 dark:text-zinc-500 mb-1.5">
-            {locale === 'it' ? 'Ecosistema Tecnologico Correlato' : 'Correlated Tech Ecosystem'}
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-zinc-500 mb-2">
+            {locale === 'it' ? 'Strumenti e librerie collegate' : 'Related tools & ecosystem'}
           </h4>
-          <div class="flex flex-wrap gap-1">
+          <div class="flex flex-wrap gap-1.5">
             {#each activeItem.techs as tech}
-              <span class="text-[0.65rem] font-mono px-2 py-0.5 rounded-full bg-gray-100 dark:bg-zinc-800/80 text-gray-700 dark:text-gray-300 font-medium">
+              <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium">
                 {tech}
               </span>
             {/each}
@@ -252,21 +246,21 @@
       </div>
 
       <!-- Footer action: Link to case study -->
-      <div class="pt-3 mt-3 border-t border-gray-200 dark:border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+      <div class="mt-4 pt-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <span class="text-[0.68rem] font-mono text-gray-400 dark:text-zinc-500 block">
-            {locale === 'it' ? 'Progetto Implementativo:' : 'Implementation Project:'}
+          <span class="text-xs text-gray-400 dark:text-zinc-500 block">
+            {locale === 'it' ? 'Vedi nel progetto:' : 'See in project:'}
           </span>
-          <span class="text-xs sm:text-sm font-bold text-black dark:text-white">
+          <span class="text-sm font-semibold text-black dark:text-white">
             {activeItem.project}
           </span>
         </div>
 
         <Button
           variant="filled"
-          padding="py-1 px-3.5"
+          padding="py-2 px-4"
           href="/projects?scrollTo={activeItem.slug}"
-          class="text-xs font-medium"
+          class="text-xs sm:text-sm font-medium"
         >
           {locale === 'it' ? 'Esplora Case Study' : 'View Case Study'}
         </Button>
