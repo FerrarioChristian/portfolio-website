@@ -165,18 +165,22 @@ export const projects: Project[] = [
   },
   {
     slug: 'snake',
-    title: 'Snake',
-    imageLight: '/assets/project-wip.jpg',
-    imageDark: '/assets/project-wip-dark.jpg',
+    title: 'Snakey',
+    imageLight: '/assets/projects/snakey/cover-light.jpg',
+    imageDark: '/assets/projects/snakey/cover-dark.jpg',
     github: 'https://github.com/FerrarioChristian/snakey2-with-pipeline',
     demo: 'https://snakey.ferraa.it',
-    technologies: ['Node.js', 'WebSockets', 'CI/CD', 'GitHub Actions', 'Docker'],
+    technologies: ['Node.js', 'Socket.io', 'React', 'Docker', 'Nginx', 'GitHub Actions', 'Vitest'],
     description: {
-      it: 'Snake multiplayer in tempo reale con focus approfondito su pipeline CI/CD automatizzate, test di regressione e deployment su container.',
-      en: 'Real-time multiplayer Snake game with a strong focus on automated CI/CD pipelines and deployment.'
+      it: 'Piattaforma multiplayer 1v1 in tempo reale con architettura server-authoritative, matchmaking a stanze, spettatori e pipeline CI/CD automatizzata con zero-downtime deployment.',
+      en: 'Real-time 1v1 multiplayer platform featuring server-authoritative state, room matchmaking, spectator mode, and automated CI/CD pipeline with zero-downtime deployment.'
     },
-    isFeatured: false,
-    isMinor: true
+    isFeatured: true,
+    category: 'Full-Stack & DevOps',
+    highlight: {
+      it: 'Multiplayer Real-Time & Pipeline CI/CD',
+      en: 'Real-Time Multiplayer & CI/CD Pipeline'
+    }
   },
   {
     slug: 'iot-lab-course',
