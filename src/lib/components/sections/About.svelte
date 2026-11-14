@@ -1,76 +1,117 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
+  import AcademicDetailModal from '$lib/components/AcademicDetailModal.svelte';
+  import { academicDegrees } from '$lib/data/academic';
   import { getLocale } from '$lib/i18n/locale.svelte';
 
   let locale = $derived(getLocale());
 
-  const milestones = $derived(locale === 'it' ? [
+  type MilestoneId = 'magistrale' | 'triennale' | 'diploma' | 'projects';
+
+  interface MilestoneItem {
+    id: MilestoneId;
+    period: string;
+    title: string;
+    subtitle: string;
+    tag: string;
+    tagColor: string;
+    icon: string;
+    hasDetails: boolean;
+  }
+
+  const milestones = $derived<MilestoneItem[]>(locale === 'it' ? [
     {
+      id: 'magistrale',
       period: '2024 — 2026',
       title: 'Laurea Magistrale in Informatica',
       subtitle: 'Università degli Studi di Milano-Bicocca',
-      tag: 'Completata',
+      tag: '110L',
       tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'workspace_premium'
+      icon: 'workspace_premium',
+      hasDetails: true
     },
     {
+      id: 'triennale',
       period: '2021 — 2024',
       title: 'Laurea Triennale in Informatica',
       subtitle: 'Università degli Studi di Milano-Bicocca',
-      tag: 'Completata',
+      tag: '103',
       tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'school'
+      icon: 'school',
+      hasDetails: true
     },
     {
+      id: 'diploma',
       period: '2016 — 2021',
       title: 'Diploma Tecnico in Informatica',
       subtitle: 'IIS A. Badoni (Lecco)',
       tag: 'Completato',
       tagColor: 'text-gray-500 bg-gray-500/10 border-gray-500/20',
-      icon: 'history_edu'
+      icon: 'history_edu',
+      hasDetails: false
     },
     {
+      id: 'projects',
       period: 'Continuo',
       title: 'Progettazione Hands-On & Open Source',
       subtitle: '17+ Progetti Sviluppati tra Hardware, Mobile e Web',
       tag: 'Hands-On',
       tagColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
-      icon: 'code'
+      icon: 'code',
+      hasDetails: false
     }
   ] : [
     {
+      id: 'magistrale',
       period: '2024 — 2026',
       title: 'M.Sc. in Computer Science',
       subtitle: 'University of Milano-Bicocca',
-      tag: 'Graduated',
+      tag: '110L',
       tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'workspace_premium'
+      icon: 'workspace_premium',
+      hasDetails: true
     },
     {
+      id: 'triennale',
       period: '2021 — 2024',
       title: 'B.Sc. in Computer Science',
       subtitle: 'University of Milano-Bicocca',
-      tag: 'Graduated',
+      tag: '103',
       tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'school'
+      icon: 'school',
+      hasDetails: true
     },
     {
+      id: 'diploma',
       period: '2016 — 2021',
       title: 'Technical Diploma in Computer Science',
       subtitle: 'IIS A. Badoni (Lecco)',
       tag: 'Graduated',
       tagColor: 'text-gray-500 bg-gray-500/10 border-gray-500/20',
-      icon: 'history_edu'
+      icon: 'history_edu',
+      hasDetails: false
     },
     {
+      id: 'projects',
       period: 'Continuous',
       title: 'Hands-On Engineering & Open Source',
       subtitle: '17+ Projects Across Embedded Systems, Mobile & Web',
       tag: 'Hands-On',
       tagColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
-      icon: 'code'
+      icon: 'code',
+      hasDetails: false
     }
   ]);
+
+  let activeDegreeId = $state<'magistrale' | 'triennale' | null>(null);
+
+  function openDegreeModal(id: 'magistrale' | 'triennale') {
+    activeDegreeId = id;
+  }
+
+  function closeDegreeModal() {
+    activeDegreeId = null;
+  }
 </script>
 
 <section
@@ -91,7 +132,7 @@
     <!-- Content Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
       <!-- Left: Profile Summary Card (5 cols) -->
-      <div class="lg:col-span-5 bg-[var(--color-brand-bg)] dark:bg-[#0a0a0a] border border-gray-200 dark:border-zinc-800 rounded-[calc(1.8rem*var(--brm))] corner-squircle p-5 sm:p-6 shadow-sm flex flex-col justify-between text-left">
+      <div class="lg:col-span-5 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[calc(1.8rem*var(--brm))] corner-squircle p-5 sm:p-6 shadow-sm flex flex-col justify-between text-left">
         <div>
           <div class="flex items-center gap-3.5 mb-3.5">
             <div class="w-12 h-12 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-lg shadow-sm shrink-0">
@@ -101,7 +142,7 @@
               <h3 class="text-xl sm:text-2xl font-bold text-black dark:text-white tracking-tight leading-tight">
                 Christian Ferrario
               </h3>
-              <p class="text-xs sm:text-sm uppercase font-mono tracking-wider text-gray-500 dark:text-gray-400">
+              <p class="text-xs sm:text-sm uppercase font-mono tracking-wider text-gray-500 dark:text-zinc-400">
                 Software Engineer • M.Sc.
               </p>
             </div>
@@ -113,7 +154,7 @@
               : 'Focused on high-performance systems engineering, scalable backend architectures, and refined web interfaces. Passionate about translating complex algorithmic challenges into clean, maintainable software.'}
           </p>
 
-          <div class="space-y-2 text-xs sm:text-sm font-mono text-gray-600 dark:text-gray-400 border-t border-b border-gray-100 dark:border-zinc-800/80 py-3 mb-5">
+          <div class="p-3 sm:p-3.5 rounded-[calc(1.1rem*var(--brm))] corner-squircle border border-gray-200 dark:border-white/10 bg-white dark:bg-black space-y-2 text-xs sm:text-sm font-mono text-gray-600 dark:text-gray-400 mb-5">
             <div class="flex justify-between items-center">
               <span>{locale === 'it' ? 'Ateneo:' : 'University:'}</span>
               <span class="text-emerald-500 font-semibold">Milano-Bicocca</span>
@@ -153,7 +194,7 @@
       <!-- Right: Geometric Vertical Timeline (7 cols) -->
       <div class="lg:col-span-7 relative flex flex-col justify-between">
         <!-- Continuous Spine Line (Mathematically Centered at x=20px mobile, x=22px desktop) -->
-        <div class="absolute left-[19px] sm:left-[21px] top-3.5 bottom-3.5 w-[2px] bg-gray-200 dark:bg-zinc-800"></div>
+        <div class="absolute left-[19px] sm:left-[21px] top-3.5 bottom-3.5 w-[2px] bg-gray-200 dark:bg-white/10"></div>
 
         <!-- Timeline Items -->
         <div class="space-y-2.5 sm:space-y-3">
@@ -161,15 +202,31 @@
             <div class="flex items-start gap-3 sm:gap-4 group">
               <!-- Geometric Node Column -->
               <div class="relative z-10 w-10 sm:w-11 flex justify-center shrink-0 pt-1.5 sm:pt-2">
-                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#0c0c0c] border-2 border-black dark:border-white flex items-center justify-center shadow-sm">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-black border-2 border-black dark:border-white flex items-center justify-center shadow-sm">
                   <span class="material-symbols-rounded text-sm sm:text-base text-black dark:text-white">
                     {m.icon}
                   </span>
                 </div>
               </div>
 
-              <!-- Content Card (Streamlined without description) -->
-              <div class="flex-1 min-w-0 bg-[var(--color-brand-bg)] dark:bg-[#0a0a0a] border border-gray-200 dark:border-zinc-800 rounded-[calc(1.2rem*var(--brm))] corner-squircle p-3 sm:p-3.5 shadow-sm hover:border-gray-400 dark:hover:border-zinc-600 transition-colors">
+              <!-- Content Card (Interactive inspect modal on click for university degrees) -->
+              <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+              <div
+                class="flex-1 min-w-0 bg-white dark:bg-black border border-gray-200 dark:border-white/10 rounded-[calc(1.2rem*var(--brm))] corner-squircle p-3 sm:p-3.5 shadow-sm transition-all duration-200
+                  {m.hasDetails
+                    ? 'interactable cursor-pointer hover:border-gray-400 dark:hover:border-white/30 hover:shadow-md'
+                    : 'hover:border-gray-300 dark:hover:border-white/20'}"
+                data-type={m.hasDetails ? 'inspect' : undefined}
+                role={m.hasDetails ? 'button' : undefined}
+                tabindex={m.hasDetails ? 0 : undefined}
+                onclick={() => m.hasDetails && openDegreeModal(m.id as 'magistrale' | 'triennale')}
+                onkeydown={(e) => {
+                  if (m.hasDetails && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    openDegreeModal(m.id as 'magistrale' | 'triennale');
+                  }
+                }}
+              >
                 <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1">
                   <span class="font-mono text-xs sm:text-sm font-medium text-gray-500 dark:text-zinc-400 tracking-wider">
                     {m.period}
@@ -193,6 +250,12 @@
       </div>
     </div>
   </div>
+
+  <!-- Academic Career Detail Modal (Inspect & Transcript) -->
+  <AcademicDetailModal
+    degree={activeDegreeId ? academicDegrees[activeDegreeId] : null}
+    onclose={closeDegreeModal}
+  />
 
   <!-- Scroll down arrow to experience -->
   <!-- svelte-ignore a11y_click_events_have_key_events -->
