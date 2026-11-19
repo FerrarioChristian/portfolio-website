@@ -74,7 +74,7 @@
 
           <div class="min-w-0">
             <div class="flex items-center gap-2 mb-1">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/5 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10">
                 {t(degree.status)}
               </span>
               <span class="text-xs font-medium text-gray-500 dark:text-zinc-400">
@@ -124,7 +124,7 @@
       <!-- Thesis Section (Pure white in light, pure black in dark, generous padding, cohesive buttons) -->
       {#if degree.thesis}
         <div class="mx-5 sm:mx-6 mb-3 p-4 sm:p-5 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black shrink-0">
-          <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1.5">
+          <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-zinc-400 font-mono mb-1.5">
             <span class="material-symbols-rounded text-base">history_edu</span>
             <span>{locale === 'it' ? 'Tesi di Laurea' : 'Thesis Project'}</span>
           </div>
