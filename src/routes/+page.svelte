@@ -6,13 +6,17 @@
   import Projects from '$lib/components/sections/Projects.svelte';
   import Contact from '$lib/components/sections/Contact.svelte';
   import Footer from '$lib/components/Footer.svelte';
+  // Toggle for experience section experiment: hidden on home page while testing dedicated /about page
+  const showHomeExperience = false;
 </script>
 
 <Header />
 <main>
   <Profile />
   <About />
-  <Experience />
+  {#if showHomeExperience}
+    <Experience />
+  {/if}
   <Projects />
   <Contact />
 </main>
