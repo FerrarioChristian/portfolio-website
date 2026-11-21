@@ -2,106 +2,23 @@
   import Button from '$lib/components/Button.svelte';
   import AcademicDetailModal from '$lib/components/AcademicDetailModal.svelte';
   import { academicDegrees } from '$lib/data/academic';
-  import { getLocale } from '$lib/i18n/locale.svelte';
+  import { educationMilestones } from '$lib/data/about';
+  import { getLocale, t } from '$lib/i18n/locale.svelte';
 
   let locale = $derived(getLocale());
 
-  type MilestoneId = 'magistrale' | 'triennale' | 'diploma' | 'projects';
-
-  interface MilestoneItem {
-    id: MilestoneId;
-    period: string;
-    title: string;
-    subtitle: string;
-    tag: string;
-    tagColor: string;
-    icon: string;
-    hasDetails: boolean;
-  }
-
-  const milestones = $derived<MilestoneItem[]>(locale === 'it' ? [
-    {
-      id: 'magistrale',
-      period: '2024 — 2026',
-      title: 'Laurea Magistrale in Informatica',
-      subtitle: 'Università degli Studi di Milano-Bicocca',
-      tag: '110L',
-      tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'workspace_premium',
-      hasDetails: true
-    },
-    {
-      id: 'triennale',
-      period: '2021 — 2024',
-      title: 'Laurea Triennale in Informatica',
-      subtitle: 'Università degli Studi di Milano-Bicocca',
-      tag: '103',
-      tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'school',
-      hasDetails: true
-    },
-    {
-      id: 'diploma',
-      period: '2016 — 2021',
-      title: 'Diploma Tecnico in Informatica',
-      subtitle: 'IIS A. Badoni (Lecco)',
-      tag: 'Completato',
-      tagColor: 'text-gray-500 bg-gray-500/10 border-gray-500/20',
-      icon: 'history_edu',
-      hasDetails: false
-    },
-    {
-      id: 'projects',
-      period: 'Continuo',
-      title: 'Progettazione Hands-On & Open Source',
-      subtitle: '17+ Progetti Sviluppati tra Hardware, Mobile e Web',
-      tag: 'Hands-On',
-      tagColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
-      icon: 'code',
-      hasDetails: false
-    }
-  ] : [
-    {
-      id: 'magistrale',
-      period: '2024 — 2026',
-      title: 'M.Sc. in Computer Science',
-      subtitle: 'University of Milano-Bicocca',
-      tag: '110L',
-      tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'workspace_premium',
-      hasDetails: true
-    },
-    {
-      id: 'triennale',
-      period: '2021 — 2024',
-      title: 'B.Sc. in Computer Science',
-      subtitle: 'University of Milano-Bicocca',
-      tag: '103',
-      tagColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      icon: 'school',
-      hasDetails: true
-    },
-    {
-      id: 'diploma',
-      period: '2016 — 2021',
-      title: 'Technical Diploma in Computer Science',
-      subtitle: 'IIS A. Badoni (Lecco)',
-      tag: 'Graduated',
-      tagColor: 'text-gray-500 bg-gray-500/10 border-gray-500/20',
-      icon: 'history_edu',
-      hasDetails: false
-    },
-    {
-      id: 'projects',
-      period: 'Continuous',
-      title: 'Hands-On Engineering & Open Source',
-      subtitle: '17+ Projects Across Embedded Systems, Mobile & Web',
-      tag: 'Hands-On',
-      tagColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
-      icon: 'code',
-      hasDetails: false
-    }
-  ]);
+  const milestones = $derived(
+    educationMilestones.map((m) => ({
+      id: m.id,
+      period: typeof m.period === 'string' ? m.period : t(m.period),
+      title: t(m.title),
+      subtitle: t(m.institution),
+      tag: typeof m.tag === 'string' ? m.tag : t(m.tag),
+      tagColor: m.tagColor,
+      icon: m.icon,
+      hasDetails: m.hasDetails
+    }))
+  );
 
   let activeDegreeId = $state<'magistrale' | 'triennale' | null>(null);
 
@@ -116,7 +33,7 @@
 
 <section
   id="about"
-  class="lg:snap-start relative py-6 lg:py-8 min-h-[85vh] lg:h-[92vh] lg:mx-[10rem] mx-[5%] box-border flex flex-col justify-center"
+  class="lg:snap-start relative py-6 lg:py-8 min-h-[85vh] lg:min-h-[92vh] lg:mx-[10rem] mx-[5%] box-border flex flex-col justify-center"
 >
   <div class="w-full max-w-[90rem] mx-auto flex flex-col justify-between">
     <!-- Header aligned with site typography style -->
@@ -157,7 +74,7 @@
           <div class="p-3 sm:p-3.5 rounded-[calc(1.1rem*var(--brm))] corner-squircle border border-gray-200 dark:border-white/10 bg-white dark:bg-black space-y-2 text-xs sm:text-sm font-mono text-gray-600 dark:text-gray-400 mb-5">
             <div class="flex justify-between items-center">
               <span>{locale === 'it' ? 'Ateneo:' : 'University:'}</span>
-              <span class="text-emerald-500 font-semibold">Milano-Bicocca</span>
+              <span class="text-black dark:text-white font-medium">Milano-Bicocca</span>
             </div>
             <div class="flex justify-between items-center">
               <span>{locale === 'it' ? 'Focus:' : 'Focus:'}</span>
@@ -170,24 +87,40 @@
           </div>
         </div>
 
-        <div class="flex gap-3">
-          <Button
-            variant="filled"
-            padding="py-2 px-4"
-            href="/assets/CV Christian Ferrario.pdf"
-            target="_blank"
-            class="text-xs sm:text-sm font-medium flex-1 text-center"
+        <div class="flex flex-col gap-4">
+          <!-- Button for experiences: white in dark mode, black in light mode, with icon, proper font size and squircle stondatura -->
+          <a
+            href="/experience"
+            data-sveltekit-preload-data="hover"
+            data-type="internal"
+            class="group interactable box-border flex items-center justify-between w-full px-5 py-3 rounded-[calc(2rem*var(--brm))] corner-squircle bg-black dark:bg-white text-white dark:text-black border border-black dark:border-white font-semibold text-sm sm:text-base shadow-sm transition-all duration-300 hover:scale-[1.01] active:scale-95"
           >
-            {locale === 'it' ? 'Scarica CV' : 'Download CV'}
-          </Button>
-          <Button
-            variant="outline"
-            padding="py-2 px-4"
-            href="#contact"
-            class="text-xs sm:text-sm font-medium flex-1 text-center"
-          >
-            {locale === 'it' ? 'Contattami' : 'Get in Touch'}
-          </Button>
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-rounded text-xl">work</span>
+              <span>{locale === 'it' ? 'Esperienze Lavorative' : 'Work Experience'}</span>
+            </div>
+            <span class="material-symbols-rounded text-xl transition-transform duration-300 group-hover:translate-x-1.5">arrow_forward</span>
+          </a>
+
+          <div class="flex gap-2.5">
+            <Button
+              variant="outline"
+              padding="py-2 px-3"
+              href="/assets/CV Christian Ferrario.pdf"
+              target="_blank"
+              class="text-xs sm:text-sm font-medium flex-1 text-center"
+            >
+              {locale === 'it' ? 'Scarica CV' : 'Download CV'}
+            </Button>
+            <Button
+              variant="outline"
+              padding="py-2 px-3"
+              href="#contact"
+              class="text-xs sm:text-sm font-medium flex-1 text-center"
+            >
+              {locale === 'it' ? 'Contattami' : 'Get in Touch'}
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -247,6 +180,32 @@
             </div>
           {/each}
         </div>
+
+        <!-- Prominent Experience Referral Callout Card -->
+        <div class="mt-4 sm:mt-5 ml-10 sm:ml-12 p-3.5 sm:p-4 rounded-[calc(1.3rem*var(--brm))] corner-squircle bg-white dark:bg-black border border-gray-200 dark:border-white/10 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-all duration-300 hover:border-gray-400 dark:hover:border-white/30">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black/5 dark:bg-white/10 flex items-center justify-center shrink-0">
+              <span class="material-symbols-rounded text-xl text-black dark:text-white">work_history</span>
+            </div>
+            <div class="min-w-0">
+              <h4 class="text-xs sm:text-sm font-bold text-black dark:text-white leading-tight">
+                {locale === 'it' ? 'Esperienze in Azienda & Progetti Personali' : 'Industry Experience & Personal Setups'}
+              </h4>
+              <p class="text-[0.75rem] sm:text-xs text-gray-500 dark:text-gray-400 font-light truncate">
+                {locale === 'it' ? 'Efebia, Elemaster, ASST Lecco, Home Lab e setup' : 'Efebia, Elemaster, ASST Lecco, Home Lab & setup'}
+              </p>
+            </div>
+          </div>
+          <Button
+            variant="filled"
+            href="/experience"
+            data-type="internal"
+            padding="py-1.5 px-4"
+            class="text-xs font-semibold shrink-0"
+          >
+            {locale === 'it' ? 'Approfondisci →' : 'Explore Journey →'}
+          </Button>
+        </div>
       </div>
     </div>
   </div>
@@ -266,7 +225,7 @@
     class="h-[2rem] absolute right-[1rem] bottom-[2rem] scale-110 interactable hidden lg:block cursor-pointer dark:invert opacity-60 hover:opacity-100 transition-all duration-300"
     data-type="internal"
     onclick={() => {
-      const el = document.getElementById('experience');
+      const el = document.getElementById('experience') || document.getElementById('projects');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }}
   />
